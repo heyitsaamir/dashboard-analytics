@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
 import { ChannelChart } from './components/ChannelChart'
@@ -8,8 +8,39 @@ import { RevenueChart } from './components/RevenueChart'
 import { Sidebar } from './components/Sidebar'
 import { metrics } from './data/demoData'
 
+export type Theme = 'light' | 'dark'
+
+const themeStorageKey = 'northstar-theme'
+
+function getPreferredTheme(): Theme {
+  const savedTheme = window.localStorage.getItem(themeStorageKey)
+
+  if (savedTheme === 'light' || savedTheme === 'dark') {
+    return savedTheme
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
+
 function App() {
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const [theme, setTheme] = useState<Theme>(getPreferredTheme)
+
+  useLayoutEffect(() => {
+    document.documentElement.dataset.theme = theme
+    document.documentElement.style.colorScheme = theme
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'dark' ? '#0b1018' : '#f5f7fb')
+  }, [theme])
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => {
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark'
+      window.localStorage.setItem(themeStorageKey, nextTheme)
+      return nextTheme
+    })
+  }
 
   return (
     <div className="app-shell">
@@ -37,7 +68,11 @@ function App() {
       </div>
 
       <div className="workspace">
-        <Header onMenuClick={() => setNavigationOpen(true)} />
+        <Header
+          onMenuClick={() => setNavigationOpen(true)}
+          onThemeToggle={toggleTheme}
+          theme={theme}
+        />
         <main>
           <div className="page-heading">
             <div>
