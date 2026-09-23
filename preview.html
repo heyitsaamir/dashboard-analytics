@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northstar Analytics - Legibility Preview</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --bg: #0b0f17;
+      --sidebar: #0e131d;
+      --panel: #111722;
+      --panel-raised: #151c29;
+      --border: #252c38;
+      --text: #f4f7fb;
+      --soft: #c2cad6;
+      --muted: #909bad;
+      --accent: #6ee7b7;
+      --danger: #ff9aaa;
+      --warning: #f4c97b;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 78% 6%, rgba(47, 129, 105, .13), transparent 32rem),
+        var(--bg);
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    .preview-label {
+      padding: 14px 24px;
+      color: var(--soft);
+      background: #0a0e15;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .dashboard {
+      display: grid;
+      grid-template-columns: 224px minmax(0, 1fr);
+      min-height: 820px;
+    }
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      padding: 22px 14px 16px;
+      background: rgba(14, 19, 29, .98);
+      border-right: 1px solid var(--border);
+    }
+    .brand, .nav-item, .profile, .topbar, .heading, .metric-head,
+    .panel-head, .legend, .customer, .status, .mobile-top, .mobile-nav {
+      display: flex;
+      align-items: center;
+    }
+    .brand {
+      gap: 10px;
+      padding: 0 10px 26px;
+      font-size: 18px;
+      font-weight: 750;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      color: #08110e;
+      background: var(--accent);
+      border-radius: 9px;
+      font-size: 17px;
+    }
+    nav { display: grid; gap: 4px; }
+    .nav-item {
+      gap: 12px;
+      min-height: 42px;
+      padding: 0 12px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 550;
+    }
+    .nav-item.active {
+      color: var(--text);
+      background: #19212d;
+      border-color: #283241;
+      box-shadow: inset 3px 0 var(--accent);
+    }
+    .nav-icon { width: 18px; color: var(--accent); text-align: center; }
+    .side-bottom { margin-top: auto; }
+    .profile {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 14px 8px 2px;
+      border-top: 1px solid var(--border);
+    }
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      color: var(--accent);
+      background: #182820;
+      border: 1px solid #305c4c;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .profile strong, .profile small { display: block; }
+    .profile strong { font-size: 12px; }
+    .profile small { margin-top: 2px; color: var(--muted); font-size: 11px; }
+    .workspace { min-width: 0; }
+    .topbar {
+      justify-content: space-between;
+      height: 68px;
+      padding: 0 30px;
+      background: rgba(11, 15, 23, .86);
+      border-bottom: 1px solid var(--border);
+    }
+    .search { color: var(--muted); font-size: 13px; }
+    .controls { display: flex; gap: 10px; }
+    .control {
+      padding: 9px 11px;
+      color: var(--soft);
+      background: #121823;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 12px;
+    }
+    main { padding: 30px; }
+    .heading {
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 25px;
+    }
+    .eyebrow {
+      margin: 0 0 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1, h2 { margin: 0; letter-spacing: -.035em; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 19px; }
+    .heading-copy { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+    .live {
+      padding: 7px 10px;
+      color: #a5dec9;
+      background: rgba(55, 134, 108, .14);
+      border: 1px solid rgba(110, 231, 183, .3);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .card, .panel {
+      background: linear-gradient(145deg, rgba(21, 28, 41, .88), rgba(17, 23, 34, .96));
+      border: 1px solid var(--border);
+      border-radius: 13px;
+    }
+    .card { padding: 17px; }
+    .metric-head {
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--soft);
+      font-size: 12px;
+    }
+    .pill {
+      padding: 4px 6px;
+      color: #8de0bd;
+      background: rgba(64, 137, 110, .16);
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .pill.down { color: var(--danger); background: rgba(153, 68, 83, .16); }
+    .metric-value {
+      display: block;
+      margin: 14px 0 4px;
+      font-size: 26px;
+      letter-spacing: -.04em;
+    }
+    .detail, .subtitle { color: var(--muted); font-size: 11px; }
+    .charts {
+      display: grid;
+      grid-template-columns: 1.65fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .panel { overflow: hidden; }
+    .panel-head {
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 19px 0;
+    }
+    .panel-head h2 { margin-bottom: 3px; }
+    .legend { gap: 13px; color: var(--muted); font-size: 11px; }
+    .dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .dot.target { background: #8a95a8; }
+    .chart { height: 230px; padding: 8px 16px 14px; }
+    .chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .axis { fill: var(--muted); font-size: 11px; }
+    .gridline { stroke: #303949; stroke-dasharray: 4 5; }
+    .report {
+      padding: 8px 10px;
+      color: var(--soft);
+      background: #171e2a;
+      border: 1px solid #303949;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .bar { fill: #6ee7b7; }
+    .bar:nth-of-type(2) { fill: #56caa2; }
+    .bar:nth-of-type(3) { fill: #44ad8d; }
+    .bar:nth-of-type(4) { fill: #369079; }
+    .bar:nth-of-type(5) { fill: #2b7464; }
+    .activity-head { padding-bottom: 15px; }
+    .view-all { color: var(--accent); font-size: 12px; font-weight: 750; }
+    table { width: 100%; min-width: 720px; border-collapse: collapse; }
+    th {
+      padding: 10px 16px;
+      color: var(--muted);
+      border-block: 1px solid var(--border);
+      font-size: 10px;
+      letter-spacing: .09em;
+      text-align: left;
+      text-transform: uppercase;
+    }
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(37, 44, 56, .72);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .customer { gap: 10px; }
+    .customer small { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; }
+    .muted { color: var(--muted); }
+    .status {
+      display: inline-flex;
+      padding: 4px 7px;
+      color: #8de0bd;
+      background: rgba(53, 120, 96, .16);
+      border: 1px solid rgba(110, 231, 183, .26);
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .status.pending { color: var(--warning); background: rgba(148, 102, 40, .16); border-color: rgba(244, 201, 123, .25); }
+    .status.refunded { color: var(--danger); background: rgba(140, 60, 74, .16); border-color: rgba(255, 154, 170, .25); }
+    .mobile-section {
+      padding: 44px 24px 56px;
+      background: #080c13;
+      border-top: 1px solid var(--border);
+    }
+    .section-intro { max-width: 720px; margin: 0 auto 24px; text-align: center; }
+    .section-intro p { color: var(--muted); }
+    .mobile-frame {
+      width: min(100%, 390px);
+      margin: auto;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid #303949;
+      border-radius: 24px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .35);
+    }
+    .mobile-top { justify-content: space-between; height: 62px; padding: 0 16px; border-bottom: 1px solid var(--border); }
+    .mobile-nav { gap: 12px; color: var(--muted); font-size: 12px; }
+    .mobile-main { padding: 22px 16px; }
+    .mobile-main h2 { font-size: 25px; }
+    .mobile-main .heading-copy { line-height: 1.5; }
+    .mobile-metrics { display: grid; gap: 12px; margin-top: 20px; }
+    .mobile-panel { margin-top: 12px; padding: 17px; }
+    .mini-bars { display: grid; gap: 10px; margin-top: 20px; }
+    .mini-bar { height: 12px; background: linear-gradient(90deg, var(--accent) var(--w), #202938 var(--w)); border-radius: 999px; }
+    .state-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    @media (max-width: 1050px) {
+      .dashboard { grid-template-columns: 190px minmax(0, 1fr); }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .charts { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .dashboard { display: block; min-height: 0; }
+      .sidebar { display: none; }
+      .topbar { padding: 0 16px; }
+      main { padding: 24px 16px; }
+      .heading { align-items: flex-start; }
+      .controls .control:first-child { display: none; }
+      .metrics { grid-template-columns: 1fr; }
+      .charts { grid-template-columns: 1fr; }
+      .chart { height: 205px; }
+      .table-wrap { overflow: hidden; }
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-label">Updated desktop dashboard · higher contrast and larger supporting labels</div>
+  <section class="dashboard" aria-label="Northstar analytics desktop dashboard">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">✦</span><span>Northstar</span></div>
+      <nav aria-label="Primary navigation">
+        <a class="nav-item active" href="#overview"><span class="nav-icon">▦</span>Overview</a>
+        <a class="nav-item" href="#customers"><span class="nav-icon">◎</span>Customers</a>
+        <a class="nav-item" href="#revenue"><span class="nav-icon">◇</span>Revenue</a>
+        <a class="nav-item" href="#products"><span class="nav-icon">□</span>Products</a>
+        <a class="nav-item" href="#campaigns"><span class="nav-icon">◁</span>Campaigns</a>
+        <a class="nav-item" href="#reports"><span class="nav-icon">▥</span>Reports</a>
+      </nav>
+      <div class="side-bottom">
+        <a class="nav-item" href="#help"><span class="nav-icon">?</span>Help center</a>
+        <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span>Settings</a>
+        <div class="profile">
+          <div class="avatar">AJ</div>
+          <div><strong>Aamir Jawaid</strong><small>Workspace owner</small></div>
+          <span class="muted">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="search">⌕ &nbsp; Search metrics...</div>
+        <div class="controls"><span class="control">●</span><span class="control">▣ &nbsp; Last 30 days &nbsp;⌄</span></div>
+      </header>
+      <main id="overview">
+        <header class="heading">
+          <div>
+            <p class="eyebrow">Tuesday, September 22</p>
+            <h1>Good evening, Aamir</h1>
+            <p class="heading-copy">Here’s what’s happening across your business today.</p>
+          </div>
+          <span class="live">● &nbsp; Live data</span>
+        </header>
+
+        <section class="metrics" aria-label="Business summary">
+          <article class="card"><div class="metric-head"><span>Net revenue</span><span class="pill">↗ +12.4%</span></div><strong class="metric-value">$128,430</strong><span class="detail">vs. previous 30 days</span></article>
+          <article class="card"><div class="metric-head"><span>Active customers</span><span class="pill">↗ +8.2%</span></div><strong class="metric-value">8,429</strong><span class="detail">642 new this period</span></article>
+          <article class="card"><div class="metric-head"><span>Conversion rate</span><span class="pill">↗ +0.6%</span></div><strong class="metric-value">5.28%</strong><span class="detail">from 4.68% last month</span></article>
+          <article class="card"><div class="metric-head"><span>Avg. order value</span><span class="pill down">↘ -2.1%</span></div><strong class="metric-value">$84.20</strong><span class="detail">across 1,525 orders</span></article>
+        </section>
+
+        <section class="charts" aria-label="Performance charts">
+          <article class="panel">
+            <div class="panel-head">
+              <div><p class="eyebrow">Revenue performance</p><h2>$38,420</h2><span class="subtitle">This month · 18.2% above target</span></div>
+              <div class="legend"><span><i class="dot"></i>Revenue</span><span><i class="dot target"></i>Target</span></div>
+            </div>
+            <div class="chart">
+              <svg viewBox="0 0 680 210" role="img" aria-label="Revenue and target trend">
+                <line class="gridline" x1="48" y1="32" x2="670" y2="32"/><line class="gridline" x1="48" y1="84" x2="670" y2="84"/><line class="gridline" x1="48" y1="136" x2="670" y2="136"/><line class="gridline" x1="48" y1="176" x2="670" y2="176"/>
+                <text class="axis" x="4" y="36">$8k</text><text class="axis" x="4" y="88">$6k</text><text class="axis" x="4" y="140">$4k</text><text class="axis" x="4" y="180">$2k</text>
+                <path d="M52 150 C100 134 120 119 170 125 S245 80 300 101 S385 55 435 69 S530 30 610 39 L660 21" fill="none" stroke="#6ee7b7" stroke-width="3"/>
+                <path d="M52 142 C155 130 220 117 300 101 S455 78 530 67 S610 54 660 47" fill="none" stroke="#8a95a8" stroke-width="2" stroke-dasharray="6 6"/>
+                <path d="M52 150 C100 134 120 119 170 125 S245 80 300 101 S385 55 435 69 S530 30 610 39 L660 21 L660 176 L52 176 Z" fill="url(#fade)"/>
+                <defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6ee7b7" stop-opacity=".25"/><stop offset="1" stop-color="#6ee7b7" stop-opacity="0"/></linearGradient></defs>
+                <text class="axis" x="48" y="202">Sep 1</text><text class="axis" x="240" y="202">Sep 10</text><text class="axis" x="438" y="202">Sep 19</text><text class="axis" x="625" y="202">Sep 28</text>
+              </svg>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div><p class="eyebrow">Acquisition</p><h2>56.4k sessions</h2><span class="subtitle">Traffic by top channel</span></div>
+              <span class="report">View report</span>
+            </div>
+            <div class="chart">
+              <svg viewBox="0 0 420 210" role="img" aria-label="Sessions by channel">
+                <g class="axis"><text x="0" y="39">Organic</text><text x="0" y="76">Paid</text><text x="0" y="113">Direct</text><text x="0" y="150">Social</text><text x="0" y="187">Referral</text></g>
+                <g transform="translate(68 22)"><rect class="bar" width="326" height="18" rx="6"/><rect class="bar" y="37" width="266" height="18" rx="6"/><rect class="bar" y="74" width="196" height="18" rx="6"/><rect class="bar" y="111" width="137" height="18" rx="6"/><rect class="bar" y="148" width="88" height="18" rx="6"/></g>
+              </svg>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head activity-head"><div><p class="eyebrow">Latest activity</p><h2>Recent transactions</h2></div><span class="view-all">View all ↗</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Customer</th><th>Product</th><th>Invoice</th><th>Status</th><th>Amount</th><th>Time</th></tr></thead>
+              <tbody>
+                <tr><td><div class="customer"><span class="avatar">OM</span><span><strong>Olivia Martin</strong><small>olivia@north.io</small></span></div></td><td class="muted">Scale annual</td><td class="muted">INV-2048</td><td><span class="status">Completed</span></td><td><strong>$1,920.00</strong></td><td class="muted">2 min ago</td></tr>
+                <tr><td><div class="customer"><span class="avatar">ET</span><span><strong>Emma Thompson</strong><small>emma@studio.design</small></span></div></td><td class="muted">Scale monthly</td><td class="muted">INV-2046</td><td><span class="status pending">Pending</span></td><td><strong>$420.00</strong></td><td class="muted">43 min ago</td></tr>
+                <tr><td><div class="customer"><span class="avatar">SP</span><span><strong>Sophia Patel</strong><small>sophia@frame.dev</small></span></div></td><td class="muted">Starter monthly</td><td class="muted">INV-2044</td><td><span class="status refunded">Refunded</span></td><td><strong>$79.00</strong></td><td class="muted">3 hrs ago</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </section>
+
+  <section class="mobile-section" aria-label="Mobile and semantic state preview">
+    <div class="section-intro">
+      <p class="eyebrow">Responsive state</p>
+      <h2>Clear hierarchy on smaller screens</h2>
+      <p>Supporting text, chart labels, trend pills, and transaction states remain readable without flattening the dashboard’s visual hierarchy.</p>
+    </div>
+    <article class="mobile-frame">
+      <div class="mobile-top"><div class="mobile-nav"><strong>☰</strong><span>⌕ &nbsp; Search metrics...</span></div><span class="control">●</span></div>
+      <div class="mobile-main">
+        <p class="eyebrow">Tuesday, September 22</p>
+        <h2>Good evening, Aamir</h2>
+        <p class="heading-copy">Here’s what’s happening across your business today.</p>
+        <div class="mobile-metrics">
+          <article class="card"><div class="metric-head"><span>Net revenue</span><span class="pill">↗ +12.4%</span></div><strong class="metric-value">$128,430</strong><span class="detail">vs. previous 30 days</span></article>
+          <article class="card"><div class="metric-head"><span>Active customers</span><span class="pill">↗ +8.2%</span></div><strong class="metric-value">8,429</strong><span class="detail">642 new this period</span></article>
+        </div>
+        <article class="card mobile-panel">
+          <p class="eyebrow">Acquisition</p><h2>56.4k sessions</h2><span class="subtitle">Traffic by top channel</span>
+          <div class="mini-bars"><div class="mini-bar" style="--w: 91%"></div><div class="mini-bar" style="--w: 74%"></div><div class="mini-bar" style="--w: 55%"></div><div class="mini-bar" style="--w: 38%"></div></div>
+          <div class="state-row"><span class="status">Completed</span><span class="status pending">Pending</span><span class="status refunded">Refunded</span></div>
+        </article>
+      </div>
+    </article>
+  </section>
+</body>
+</html>

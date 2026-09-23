@@ -36,12 +36,12 @@ export function RevenueChart() {
                 <stop offset="100%" stopColor="#6ee7b7" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid stroke="#252b38" vertical={false} strokeDasharray="3 3" />
-            <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#596274', fontSize: 12 }} />
+            <CartesianGrid stroke="#303949" vertical={false} strokeDasharray="3 3" />
+            <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#909bad', fontSize: 12 }} />
             <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#596274', fontSize: 12 }}
+              tick={{ fill: '#909bad', fontSize: 12 }}
               tickFormatter={formatCompactCurrency}
             />
             <Tooltip
@@ -52,12 +52,12 @@ export function RevenueChart() {
                 borderRadius: 10,
                 color: '#f8fafc',
               }}
-              labelStyle={{ color: '#8790a2', marginBottom: 5 }}
+              labelStyle={{ color: '#b0bac9', marginBottom: 5 }}
             />
             <Area
               type="monotone"
               dataKey="target"
-              stroke="#596274"
+              stroke="#8a95a8"
               strokeWidth={2}
               strokeDasharray="5 5"
               fill="transparent"

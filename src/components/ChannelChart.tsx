@@ -30,12 +30,12 @@ export function ChannelChart() {
           initialDimension={{ width: 420, height: 270 }}
         >
           <BarChart data={channelSeries} layout="vertical" margin={{ top: 6, right: 10, left: 2, bottom: 0 }}>
-            <CartesianGrid stroke="#252b38" horizontal={false} strokeDasharray="3 3" />
+            <CartesianGrid stroke="#303949" horizontal={false} strokeDasharray="3 3" />
             <XAxis
               type="number"
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#596274', fontSize: 11 }}
+              tick={{ fill: '#909bad', fontSize: 11 }}
               tickFormatter={(value: number) => `${value / 1000}k`}
             />
             <YAxis
@@ -44,7 +44,7 @@ export function ChannelChart() {
               width={62}
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#596274', fontSize: 12 }}
+              tick={{ fill: '#909bad', fontSize: 12 }}
             />
             <Tooltip
               cursor={{ fill: 'rgba(255,255,255,0.025)' }}
