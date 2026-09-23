@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
 import { ChannelChart } from './components/ChannelChart'
@@ -8,8 +8,35 @@ import { RevenueChart } from './components/RevenueChart'
 import { Sidebar } from './components/Sidebar'
 import { metrics } from './data/demoData'
 
+export type Theme = 'dark' | 'light'
+
+const themeColors: Record<Theme, string> = {
+  dark: '#080c12',
+  light: '#f2f5f9',
+}
+
+function getInitialTheme(): Theme {
+  const savedTheme = window.localStorage?.getItem('northstar-theme')
+
+  if (savedTheme === 'dark' || savedTheme === 'light') {
+    return savedTheme
+  }
+
+  return typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-color-scheme: light)').matches
+    ? 'light'
+    : 'dark'
+}
+
 function App() {
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const [theme, setTheme] = useState<Theme>(getInitialTheme)
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    window.localStorage?.setItem('northstar-theme', theme)
+    document.querySelector<HTMLMetaElement>('#theme-color')?.setAttribute('content', themeColors[theme])
+  }, [theme])
 
   return (
     <div className="app-shell">
@@ -37,7 +64,11 @@ function App() {
       </div>
 
       <div className="workspace">
-        <Header onMenuClick={() => setNavigationOpen(true)} />
+        <Header
+          onMenuClick={() => setNavigationOpen(true)}
+          onThemeToggle={() => setTheme((currentTheme) => currentTheme === 'dark' ? 'light' : 'dark')}
+          theme={theme}
+        />
         <main>
           <div className="page-heading">
             <div>
