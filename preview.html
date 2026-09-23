@@ -3,22 +3,70 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Northstar Analytics - Legibility Preview</title>
+  <title>Northstar Analytics - Accessible Theme Preview</title>
   <style>
     :root {
       color-scheme: dark;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --bg: #0b0f17;
-      --sidebar: #0e131d;
-      --panel: #111722;
-      --panel-raised: #151c29;
-      --border: #252c38;
-      --text: #f4f7fb;
-      --soft: #c2cad6;
-      --muted: #909bad;
-      --accent: #6ee7b7;
-      --danger: #ff9aaa;
-      --warning: #f4c97b;
+      --bg: #080c12;
+      --sidebar: #0d131d;
+      --panel: #111925;
+      --panel-raised: #172130;
+      --panel-gradient: linear-gradient(145deg, #172130, #111925);
+      --topbar: rgba(8, 12, 18, .9);
+      --control: #17202d;
+      --control-hover: #202b3a;
+      --border: #344052;
+      --border-strong: #526178;
+      --text: #f7f9fc;
+      --soft: #d2d9e4;
+      --muted: #a7b3c4;
+      --accent: #5ee8b0;
+      --accent-contrast: #07120e;
+      --accent-surface: rgba(94, 232, 176, .12);
+      --positive: #8ef0c2;
+      --positive-surface: rgba(70, 190, 140, .16);
+      --danger: #ffabb5;
+      --danger-surface: rgba(224, 91, 109, .16);
+      --warning: #f5cb82;
+      --warning-surface: rgba(218, 158, 64, .16);
+      --target: #a7b3c4;
+      --grid: #344052;
+      --subtle: rgba(255, 255, 255, .04);
+      --row-border: rgba(52, 64, 82, .78);
+      --track: #202938;
+      --shadow: rgba(0, 0, 0, .35);
+    }
+    .theme-light {
+      color-scheme: light;
+      --bg: #f2f5f9;
+      --sidebar: #ffffff;
+      --panel: #ffffff;
+      --panel-raised: #f7f9fc;
+      --panel-gradient: linear-gradient(145deg, #ffffff, #f9fbfd);
+      --topbar: rgba(242, 245, 249, .92);
+      --control: #ffffff;
+      --control-hover: #e9eef5;
+      --border: #ced7e3;
+      --border-strong: #9aa8ba;
+      --text: #111827;
+      --soft: #334155;
+      --muted: #536174;
+      --accent: #087f5b;
+      --accent-contrast: #ffffff;
+      --accent-surface: rgba(8, 127, 91, .1);
+      --positive: #087451;
+      --positive-surface: rgba(8, 127, 91, .1);
+      --danger: #b4233a;
+      --danger-surface: rgba(180, 35, 58, .09);
+      --warning: #855b0b;
+      --warning-surface: rgba(155, 106, 15, .1);
+      --target: #64748b;
+      --grid: #d5dde7;
+      --subtle: rgba(15, 23, 42, .035);
+      --row-border: rgba(206, 215, 227, .9);
+      --track: #e5eaf0;
+      --shadow: rgba(15, 23, 42, .12);
     }
 
     * { box-sizing: border-box; }
@@ -26,9 +74,7 @@
       margin: 0;
       min-width: 320px;
       color: var(--text);
-      background:
-        radial-gradient(circle at 78% 6%, rgba(47, 129, 105, .13), transparent 32rem),
-        var(--bg);
+      background: #080c12;
     }
     a { color: inherit; text-decoration: none; }
     button, input { font: inherit; }
@@ -46,12 +92,16 @@
       display: grid;
       grid-template-columns: 224px minmax(0, 1fr);
       min-height: 820px;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 78% 6%, var(--accent-surface), transparent 32rem),
+        var(--bg);
     }
     .sidebar {
       display: flex;
       flex-direction: column;
       padding: 22px 14px 16px;
-      background: rgba(14, 19, 29, .98);
+      background: var(--sidebar);
       border-right: 1px solid var(--border);
     }
     .brand, .nav-item, .profile, .topbar, .heading, .metric-head,
@@ -70,7 +120,7 @@
       place-items: center;
       width: 31px;
       height: 31px;
-      color: #08110e;
+      color: var(--accent-contrast);
       background: var(--accent);
       border-radius: 9px;
       font-size: 17px;
@@ -88,8 +138,8 @@
     }
     .nav-item.active {
       color: var(--text);
-      background: #19212d;
-      border-color: #283241;
+      background: var(--control-hover);
+      border-color: var(--border);
       box-shadow: inset 3px 0 var(--accent);
     }
     .nav-icon { width: 18px; color: var(--accent); text-align: center; }
@@ -108,8 +158,8 @@
       width: 34px;
       height: 34px;
       color: var(--accent);
-      background: #182820;
-      border: 1px solid #305c4c;
+      background: var(--accent-surface);
+      border: 1px solid var(--border-strong);
       border-radius: 10px;
       font-size: 10px;
       font-weight: 800;
@@ -122,7 +172,7 @@
       justify-content: space-between;
       height: 68px;
       padding: 0 30px;
-      background: rgba(11, 15, 23, .86);
+      background: var(--topbar);
       border-bottom: 1px solid var(--border);
     }
     .search { color: var(--muted); font-size: 13px; }
@@ -130,7 +180,7 @@
     .control {
       padding: 9px 11px;
       color: var(--soft);
-      background: #121823;
+      background: var(--control);
       border: 1px solid var(--border);
       border-radius: 9px;
       font-size: 12px;
@@ -156,9 +206,9 @@
     .heading-copy { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
     .live {
       padding: 7px 10px;
-      color: #a5dec9;
-      background: rgba(55, 134, 108, .14);
-      border: 1px solid rgba(110, 231, 183, .3);
+      color: var(--positive);
+      background: var(--positive-surface);
+      border: 1px solid var(--accent);
       border-radius: 999px;
       font-size: 11px;
       font-weight: 700;
@@ -170,7 +220,7 @@
       margin-bottom: 14px;
     }
     .card, .panel {
-      background: linear-gradient(145deg, rgba(21, 28, 41, .88), rgba(17, 23, 34, .96));
+      background: var(--panel-gradient);
       border: 1px solid var(--border);
       border-radius: 13px;
     }
@@ -183,13 +233,13 @@
     }
     .pill {
       padding: 4px 6px;
-      color: #8de0bd;
-      background: rgba(64, 137, 110, .16);
+      color: var(--positive);
+      background: var(--positive-surface);
       border-radius: 5px;
       font-size: 10px;
       font-weight: 800;
     }
-    .pill.down { color: var(--danger); background: rgba(153, 68, 83, .16); }
+    .pill.down { color: var(--danger); background: var(--danger-surface); }
     .metric-value {
       display: block;
       margin: 14px 0 4px;
@@ -220,25 +270,25 @@
       background: var(--accent);
       border-radius: 50%;
     }
-    .dot.target { background: #8a95a8; }
+    .dot.target { background: var(--target); }
     .chart { height: 230px; padding: 8px 16px 14px; }
     .chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
     .axis { fill: var(--muted); font-size: 11px; }
-    .gridline { stroke: #303949; stroke-dasharray: 4 5; }
+    .gridline { stroke: var(--grid); stroke-dasharray: 4 5; }
     .report {
       padding: 8px 10px;
       color: var(--soft);
-      background: #171e2a;
-      border: 1px solid #303949;
+      background: var(--control);
+      border: 1px solid var(--border);
       border-radius: 7px;
       font-size: 11px;
       font-weight: 700;
     }
-    .bar { fill: #6ee7b7; }
-    .bar:nth-of-type(2) { fill: #56caa2; }
-    .bar:nth-of-type(3) { fill: #44ad8d; }
-    .bar:nth-of-type(4) { fill: #369079; }
-    .bar:nth-of-type(5) { fill: #2b7464; }
+    .bar { fill: var(--accent); }
+    .bar:nth-of-type(2) { opacity: .86; }
+    .bar:nth-of-type(3) { opacity: .72; }
+    .bar:nth-of-type(4) { opacity: .58; }
+    .bar:nth-of-type(5) { opacity: .44; }
     .activity-head { padding-bottom: 15px; }
     .view-all { color: var(--accent); font-size: 12px; font-weight: 750; }
     table { width: 100%; min-width: 720px; border-collapse: collapse; }
@@ -253,7 +303,7 @@
     }
     td {
       padding: 12px 16px;
-      border-bottom: 1px solid rgba(37, 44, 56, .72);
+      border-bottom: 1px solid var(--row-border);
       font-size: 12px;
       white-space: nowrap;
     }
@@ -264,18 +314,19 @@
     .status {
       display: inline-flex;
       padding: 4px 7px;
-      color: #8de0bd;
-      background: rgba(53, 120, 96, .16);
-      border: 1px solid rgba(110, 231, 183, .26);
+      color: var(--positive);
+      background: var(--positive-surface);
+      border: 1px solid var(--accent);
       border-radius: 999px;
       font-size: 10px;
       font-weight: 700;
     }
-    .status.pending { color: var(--warning); background: rgba(148, 102, 40, .16); border-color: rgba(244, 201, 123, .25); }
-    .status.refunded { color: var(--danger); background: rgba(140, 60, 74, .16); border-color: rgba(255, 154, 170, .25); }
+    .status.pending { color: var(--warning); background: var(--warning-surface); border-color: var(--warning); }
+    .status.refunded { color: var(--danger); background: var(--danger-surface); border-color: var(--danger); }
     .mobile-section {
       padding: 44px 24px 56px;
-      background: #080c13;
+      color: var(--text);
+      background: var(--bg);
       border-top: 1px solid var(--border);
     }
     .section-intro { max-width: 720px; margin: 0 auto 24px; text-align: center; }
@@ -285,9 +336,9 @@
       margin: auto;
       overflow: hidden;
       background: var(--bg);
-      border: 1px solid #303949;
+      border: 1px solid var(--border);
       border-radius: 24px;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, .35);
+      box-shadow: 0 24px 70px var(--shadow);
     }
     .mobile-top { justify-content: space-between; height: 62px; padding: 0 16px; border-bottom: 1px solid var(--border); }
     .mobile-nav { gap: 12px; color: var(--muted); font-size: 12px; }
@@ -297,7 +348,7 @@
     .mobile-metrics { display: grid; gap: 12px; margin-top: 20px; }
     .mobile-panel { margin-top: 12px; padding: 17px; }
     .mini-bars { display: grid; gap: 10px; margin-top: 20px; }
-    .mini-bar { height: 12px; background: linear-gradient(90deg, var(--accent) var(--w), #202938 var(--w)); border-radius: 999px; }
+    .mini-bar { height: 12px; background: linear-gradient(90deg, var(--accent) var(--w), var(--track) var(--w)); border-radius: 999px; }
     .state-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     @media (max-width: 1050px) {
       .dashboard { grid-template-columns: 190px minmax(0, 1fr); }
@@ -319,8 +370,8 @@
   </style>
 </head>
 <body>
-  <div class="preview-label">Updated desktop dashboard · higher contrast and larger supporting labels</div>
-  <section class="dashboard" aria-label="Northstar analytics desktop dashboard">
+  <div class="preview-label">Light theme · accessible desktop dashboard</div>
+  <section class="dashboard theme-light" aria-label="Northstar analytics light theme desktop dashboard">
     <aside class="sidebar">
       <div class="brand"><span class="brand-mark">✦</span><span>Northstar</span></div>
       <nav aria-label="Primary navigation">
@@ -345,7 +396,7 @@
     <div class="workspace">
       <header class="topbar">
         <div class="search">⌕ &nbsp; Search metrics...</div>
-        <div class="controls"><span class="control">●</span><span class="control">▣ &nbsp; Last 30 days &nbsp;⌄</span></div>
+        <div class="controls"><span class="control">☾ &nbsp; Dark mode</span><span class="control">●</span><span class="control">▣ &nbsp; Last 30 days &nbsp;⌄</span></div>
       </header>
       <main id="overview">
         <header class="heading">
@@ -374,10 +425,10 @@
               <svg viewBox="0 0 680 210" role="img" aria-label="Revenue and target trend">
                 <line class="gridline" x1="48" y1="32" x2="670" y2="32"/><line class="gridline" x1="48" y1="84" x2="670" y2="84"/><line class="gridline" x1="48" y1="136" x2="670" y2="136"/><line class="gridline" x1="48" y1="176" x2="670" y2="176"/>
                 <text class="axis" x="4" y="36">$8k</text><text class="axis" x="4" y="88">$6k</text><text class="axis" x="4" y="140">$4k</text><text class="axis" x="4" y="180">$2k</text>
-                <path d="M52 150 C100 134 120 119 170 125 S245 80 300 101 S385 55 435 69 S530 30 610 39 L660 21" fill="none" stroke="#6ee7b7" stroke-width="3"/>
-                <path d="M52 142 C155 130 220 117 300 101 S455 78 530 67 S610 54 660 47" fill="none" stroke="#8a95a8" stroke-width="2" stroke-dasharray="6 6"/>
+                <path d="M52 150 C100 134 120 119 170 125 S245 80 300 101 S385 55 435 69 S530 30 610 39 L660 21" fill="none" stroke="var(--accent)" stroke-width="3"/>
+                <path d="M52 142 C155 130 220 117 300 101 S455 78 530 67 S610 54 660 47" fill="none" stroke="var(--target)" stroke-width="2" stroke-dasharray="6 6"/>
                 <path d="M52 150 C100 134 120 119 170 125 S245 80 300 101 S385 55 435 69 S530 30 610 39 L660 21 L660 176 L52 176 Z" fill="url(#fade)"/>
-                <defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6ee7b7" stop-opacity=".25"/><stop offset="1" stop-color="#6ee7b7" stop-opacity="0"/></linearGradient></defs>
+                <defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".25"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
                 <text class="axis" x="48" y="202">Sep 1</text><text class="axis" x="240" y="202">Sep 10</text><text class="axis" x="438" y="202">Sep 19</text><text class="axis" x="625" y="202">Sep 28</text>
               </svg>
             </div>
@@ -414,10 +465,11 @@
     </div>
   </section>
 
-  <section class="mobile-section" aria-label="Mobile and semantic state preview">
+  <div class="preview-label">Dark theme · responsive dashboard state</div>
+  <section class="mobile-section" aria-label="Dark theme mobile and semantic state preview">
     <div class="section-intro">
-      <p class="eyebrow">Responsive state</p>
-      <h2>Clear hierarchy on smaller screens</h2>
+      <p class="eyebrow">Responsive dark theme</p>
+      <h2>Both modes keep the same clear hierarchy</h2>
       <p>Supporting text, chart labels, trend pills, and transaction states remain readable without flattening the dashboard’s visual hierarchy.</p>
     </div>
     <article class="mobile-frame">
