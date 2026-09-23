@@ -32,32 +32,32 @@ export function RevenueChart() {
           <AreaChart data={revenueSeries} margin={{ top: 12, right: 6, left: -16, bottom: 0 }}>
             <defs>
               <linearGradient id="revenueFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#6ee7b7" stopOpacity={0.28} />
-                <stop offset="100%" stopColor="#6ee7b7" stopOpacity={0} />
+                <stop offset="0%" stopColor="var(--accent)" stopOpacity={0.28} />
+                <stop offset="100%" stopColor="var(--accent)" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid stroke="#252b38" vertical={false} strokeDasharray="3 3" />
-            <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#596274', fontSize: 12 }} />
+            <CartesianGrid stroke="var(--chart-grid)" vertical={false} strokeDasharray="3 3" />
+            <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: 'var(--chart-label)', fontSize: 12 }} />
             <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#596274', fontSize: 12 }}
+              tick={{ fill: 'var(--chart-label)', fontSize: 12 }}
               tickFormatter={formatCompactCurrency}
             />
             <Tooltip
               formatter={(value) => [formatCompactCurrency(Number(value ?? 0)), '']}
               contentStyle={{
-                background: '#171e2c',
-                border: '1px solid #303848',
+                background: 'var(--tooltip-background)',
+                border: '1px solid var(--border-strong)',
                 borderRadius: 10,
-                color: '#f8fafc',
+                color: 'var(--text)',
               }}
-              labelStyle={{ color: '#8790a2', marginBottom: 5 }}
+              labelStyle={{ color: 'var(--text-soft)', marginBottom: 5 }}
             />
             <Area
               type="monotone"
               dataKey="target"
-              stroke="#596274"
+              stroke="var(--chart-target)"
               strokeWidth={2}
               strokeDasharray="5 5"
               fill="transparent"
@@ -65,7 +65,7 @@ export function RevenueChart() {
             <Area
               type="monotone"
               dataKey="revenue"
-              stroke="#6ee7b7"
+              stroke="var(--accent)"
               strokeWidth={2.5}
               fill="url(#revenueFill)"
             />

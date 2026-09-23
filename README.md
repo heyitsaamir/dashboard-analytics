@@ -1,6 +1,6 @@
 # Northstar Analytics
 
-A polished, responsive dark-mode analytics dashboard built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
+A polished, responsive analytics dashboard with accessible light and dark themes, built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
 
 ## Getting started
 
@@ -12,6 +12,8 @@ npm run dev
 ```
 
 Open the local URL printed by Vite. The default development experience always uses the deterministic fixtures in `src/data/demoData.ts`; it makes no backend or external data API calls. Restarting or refreshing the app returns the same KPI, chart, and transaction data.
+
+The app follows the operating-system theme on first visit and remembers changes made with the header theme control. A standalone, script-free comparison of both themes is available at `/theme-preview.html`.
 
 ## Commands
 

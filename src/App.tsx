@@ -7,9 +7,11 @@ import { MetricCard } from './components/MetricCard'
 import { RevenueChart } from './components/RevenueChart'
 import { Sidebar } from './components/Sidebar'
 import { metrics } from './data/demoData'
+import { useTheme } from './useTheme'
 
 function App() {
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <div className="app-shell">
@@ -37,7 +39,11 @@ function App() {
       </div>
 
       <div className="workspace">
-        <Header onMenuClick={() => setNavigationOpen(true)} />
+        <Header
+          onMenuClick={() => setNavigationOpen(true)}
+          onThemeToggle={toggleTheme}
+          theme={theme}
+        />
         <main>
           <div className="page-heading">
             <div>

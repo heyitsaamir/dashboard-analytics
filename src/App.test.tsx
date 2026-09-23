@@ -1,7 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import App from './App'
 
 describe('App', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+    document.documentElement.removeAttribute('data-theme')
+  })
+
   it('renders the business summary and deterministic transaction data', () => {
     render(<App />)
 
@@ -20,5 +25,26 @@ describe('App', () => {
 
     fireEvent.click(screen.getAllByRole('button', { name: /close navigation/i })[0])
     expect(screen.queryByRole('button', { name: /close navigation/i })).not.toBeInTheDocument()
+  })
+
+  it('uses the system theme initially and persists the user selection', async () => {
+    vi.mocked(window.matchMedia).mockImplementation((query) => ({
+      matches: query === '(prefers-color-scheme: light)',
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }))
+
+    render(<App />)
+
+    await waitFor(() => expect(document.documentElement.dataset.theme).toBe('light'))
+    fireEvent.click(screen.getByRole('button', { name: /switch to dark mode/i }))
+
+    await waitFor(() => expect(document.documentElement.dataset.theme).toBe('dark'))
+    expect(window.localStorage.getItem('dashboard-theme')).toBe('dark')
   })
 })
