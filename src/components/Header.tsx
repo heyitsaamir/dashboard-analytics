@@ -1,10 +1,14 @@
-import { Bell, CalendarDays, ChevronDown, Menu, Search } from 'lucide-react'
+import { Bell, CalendarDays, ChevronDown, Menu, Moon, Search, Sun } from 'lucide-react'
 
 type HeaderProps = {
   onMenuClick: () => void
+  onThemeToggle: () => void
+  theme: 'dark' | 'light'
 }
 
-export function Header({ onMenuClick }: HeaderProps) {
+export function Header({ onMenuClick, onThemeToggle, theme }: HeaderProps) {
+  const isDark = theme === 'dark'
+
   return (
     <header className="topbar">
       <button
@@ -20,6 +24,14 @@ export function Header({ onMenuClick }: HeaderProps) {
         <kbd>⌘ K</kbd>
       </div>
       <div className="topbar-actions">
+        <button
+          className="icon-button"
+          onClick={onThemeToggle}
+          aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+          title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+        >
+          {isDark ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
         <button className="icon-button notification-button" aria-label="Notifications">
           <Bell size={19} />
           <span className="notification-dot" />

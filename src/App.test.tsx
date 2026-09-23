@@ -21,4 +21,15 @@ describe('App', () => {
     fireEvent.click(screen.getAllByRole('button', { name: /close navigation/i })[0])
     expect(screen.queryByRole('button', { name: /close navigation/i })).not.toBeInTheDocument()
   })
+
+  it('switches between dark and light mode', () => {
+    render(<App />)
+
+    fireEvent.click(screen.getByRole('button', { name: /switch to light mode/i }))
+    expect(document.documentElement).toHaveAttribute('data-theme', 'light')
+    expect(window.localStorage.getItem('northstar-theme')).toBe('light')
+
+    fireEvent.click(screen.getByRole('button', { name: /switch to dark mode/i }))
+    expect(document.documentElement).toHaveAttribute('data-theme', 'dark')
+  })
 })
