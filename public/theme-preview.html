@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Northstar theme preview</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #172033;
+        background: #dfe5ec;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+      }
+
+      .page-header {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 44px 28px 24px;
+      }
+
+      .page-header p {
+        max-width: 680px;
+        margin: 8px 0 0;
+        color: #4b5a70;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 0;
+        font-size: clamp(26px, 4vw, 42px);
+        letter-spacing: -0.04em;
+      }
+
+      .previews {
+        display: grid;
+        gap: 28px;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 28px 56px;
+      }
+
+      .preview-frame {
+        overflow: hidden;
+        border: 1px solid #b4becb;
+        border-radius: 18px;
+        box-shadow: 0 22px 65px rgba(39, 55, 78, 0.17);
+      }
+
+      .preview-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        padding: 11px 16px;
+        color: #39485d;
+        background: #edf1f5;
+        border-bottom: 1px solid #cbd3dd;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .preview {
+        --background: #0b0f17;
+        --sidebar: #101722;
+        --panel: #141d2b;
+        --border: #364152;
+        --text: #f8fafc;
+        --soft: #cbd5e1;
+        --muted: #9ba8ba;
+        --accent: #6ee7b7;
+        --accent-ink: #08251d;
+        --active: #202b3a;
+        --chart-grid: #3d495b;
+        --positive-bg: rgba(64, 137, 110, 0.18);
+        --negative: #f3a6b2;
+        --negative-bg: rgba(153, 68, 83, 0.2);
+        display: grid;
+        grid-template-columns: 184px minmax(0, 1fr);
+        min-height: 720px;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 76% 12%, rgba(47, 129, 105, 0.14), transparent 22rem),
+          var(--background);
+      }
+
+      .preview.light {
+        --background: #f3f6f9;
+        --sidebar: #ffffff;
+        --panel: #ffffff;
+        --border: #cbd5e1;
+        --text: #172033;
+        --soft: #3c4a5f;
+        --muted: #5b687a;
+        --accent: #08795d;
+        --accent-ink: #ffffff;
+        --active: #e8f3ef;
+        --chart-grid: #d3dae4;
+        --positive-bg: rgba(8, 121, 93, 0.11);
+        --negative: #a12f43;
+        --negative-bg: rgba(161, 47, 67, 0.1);
+      }
+
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 12px;
+        background: var(--sidebar);
+        border-right: 1px solid var(--border);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 22px;
+        padding: 0 8px;
+        font-weight: 750;
+      }
+
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        color: var(--accent-ink);
+        background: var(--accent);
+        border-radius: 9px;
+      }
+
+      nav {
+        display: grid;
+        gap: 4px;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 11px;
+        color: var(--muted);
+        border: 1px solid transparent;
+        border-radius: 9px;
+        font-size: 12px;
+      }
+
+      .nav-item.active {
+        color: var(--text);
+        background: var(--active);
+        border-color: var(--border);
+        box-shadow: inset 3px 0 var(--accent);
+      }
+
+      .nav-icon {
+        width: 13px;
+        height: 13px;
+        border: 1.5px solid currentColor;
+        border-radius: 3px;
+      }
+
+      .profile {
+        margin-top: auto;
+        padding: 14px 8px 0;
+        color: var(--soft);
+        border-top: 1px solid var(--border);
+        font-size: 11px;
+      }
+
+      .profile small {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+      }
+
+      .workspace {
+        min-width: 0;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 58px;
+        padding: 0 24px;
+        color: var(--muted);
+        background: color-mix(in srgb, var(--background) 90%, transparent);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .search {
+        font-size: 12px;
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 8px;
+      }
+
+      .tool {
+        display: grid;
+        place-items: center;
+        min-width: 31px;
+        height: 31px;
+        padding: 0 9px;
+        color: var(--soft);
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font: inherit;
+        font-size: 11px;
+      }
+
+      .dashboard-main {
+        padding: 26px;
+      }
+
+      .heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .eyebrow {
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 9px;
+        font-weight: 750;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .heading h2 {
+        margin-bottom: 5px;
+        font-size: 26px;
+        letter-spacing: -0.04em;
+      }
+
+      .heading-copy {
+        margin: 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .live {
+        padding: 7px 10px;
+        color: var(--accent);
+        background: color-mix(in srgb, var(--accent) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .card,
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .card {
+        min-width: 0;
+        padding: 14px;
+      }
+
+      .card-label {
+        color: var(--soft);
+        font-size: 10px;
+      }
+
+      .card strong {
+        display: block;
+        margin: 13px 0 4px;
+        font-size: 21px;
+        letter-spacing: -0.035em;
+      }
+
+      .card small {
+        color: var(--muted);
+        font-size: 9px;
+      }
+
+      .change {
+        float: right;
+        padding: 3px 5px;
+        color: var(--accent);
+        background: var(--positive-bg);
+        border-radius: 5px;
+        font-size: 8px;
+        font-weight: 750;
+      }
+
+      .change.negative {
+        color: var(--negative);
+        background: var(--negative-bg);
+      }
+
+      .chart-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(240px, 1fr);
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .panel {
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .panel-header {
+        padding: 15px 16px 0;
+      }
+
+      .panel-header h3 {
+        margin-bottom: 3px;
+        font-size: 16px;
+      }
+
+      .panel-header small {
+        color: var(--muted);
+        font-size: 9px;
+      }
+
+      .line-chart {
+        display: block;
+        width: calc(100% - 54px);
+        height: 190px;
+        margin: 12px 16px 16px 38px;
+      }
+
+      .line-chart .grid-line {
+        stroke: var(--chart-grid);
+        stroke-dasharray: 4 4;
+        stroke-width: 1;
+      }
+
+      .line-chart .area {
+        fill: color-mix(in srgb, var(--accent) 13%, transparent);
+      }
+
+      .line-chart .trend {
+        fill: none;
+        stroke: var(--accent);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3;
+      }
+
+      .bar-chart {
+        display: grid;
+        gap: 12px;
+        padding: 22px 18px 23px;
+      }
+
+      .bar-row {
+        display: grid;
+        grid-template-columns: 48px minmax(0, 1fr);
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 9px;
+      }
+
+      .bar {
+        height: 12px;
+        width: var(--width);
+        background: var(--accent);
+        border-radius: 0 5px 5px 0;
+        opacity: var(--opacity, 1);
+      }
+
+      .activity header {
+        padding: 15px 16px;
+      }
+
+      .activity h3 {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 9px;
+      }
+
+      th,
+      td {
+        padding: 10px 16px;
+        border-top: 1px solid var(--border);
+        text-align: left;
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 8px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      td {
+        color: var(--soft);
+      }
+
+      .status {
+        padding: 3px 6px;
+        color: var(--accent);
+        background: var(--positive-bg);
+        border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+        border-radius: 999px;
+      }
+
+      @media (max-width: 900px) {
+        .preview {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          display: none;
+        }
+
+        .chart-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .page-header {
+          padding: 30px 16px 20px;
+        }
+
+        .previews {
+          padding: 0 16px 36px;
+        }
+
+        .topbar {
+          padding: 0 14px;
+        }
+
+        .tool.date {
+          display: none;
+        }
+
+        .dashboard-main {
+          padding: 20px 14px;
+        }
+
+        .heading {
+          align-items: flex-start;
+        }
+
+        .heading h2 {
+          font-size: 22px;
+        }
+
+        .metric-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        table th:nth-child(2),
+        table td:nth-child(2),
+        table th:nth-child(4),
+        table td:nth-child(4) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Northstar theme preview</h1>
+      <p>
+        A script-free reference for the accessible light and dark dashboard themes.
+        Both previews use the same semantic layout and WCAG AA-aware color system.
+      </p>
+    </header>
+
+    <main class="previews">
+      <section class="preview-frame" aria-labelledby="light-preview-title">
+        <h2 class="preview-label" id="light-preview-title">
+          Light theme
+          <span>Static preview</span>
+        </h2>
+        <div class="preview light">
+          <aside class="sidebar">
+            <div class="brand"><span class="brand-mark">+</span> Northstar</div>
+            <nav aria-label="Light theme navigation">
+              <span class="nav-item active"><i class="nav-icon"></i> Overview</span>
+              <span class="nav-item"><i class="nav-icon"></i> Customers</span>
+              <span class="nav-item"><i class="nav-icon"></i> Revenue</span>
+              <span class="nav-item"><i class="nav-icon"></i> Products</span>
+              <span class="nav-item"><i class="nav-icon"></i> Campaigns</span>
+              <span class="nav-item"><i class="nav-icon"></i> Reports</span>
+            </nav>
+            <div class="profile">Aamir Jawaid<small>Workspace owner</small></div>
+          </aside>
+          <div class="workspace">
+            <header class="topbar">
+              <span class="search">Search metrics...</span>
+              <div class="toolbar">
+                <span class="tool" aria-label="Dark theme option">Moon</span>
+                <span class="tool">Bell</span>
+                <span class="tool date">Last 30 days</span>
+              </div>
+            </header>
+            <div class="dashboard-main">
+              <div class="heading">
+                <div>
+                  <p class="eyebrow">Tuesday, September 22</p>
+                  <h2>Good evening, Aamir</h2>
+                  <p class="heading-copy">Here is what is happening across your business today.</p>
+                </div>
+                <span class="live">Live data</span>
+              </div>
+              <section class="metric-grid" aria-label="Light theme business summary">
+                <article class="card"><span class="change">+12.4%</span><span class="card-label">Net revenue</span><strong>$128,430</strong><small>vs. previous 30 days</small></article>
+                <article class="card"><span class="change">+8.2%</span><span class="card-label">Active customers</span><strong>8,429</strong><small>642 new this period</small></article>
+                <article class="card"><span class="change">+0.6%</span><span class="card-label">Conversion rate</span><strong>5.28%</strong><small>from 4.68% last month</small></article>
+                <article class="card"><span class="change negative">-2.1%</span><span class="card-label">Avg. order value</span><strong>$84.20</strong><small>across 1,525 orders</small></article>
+              </section>
+              <div class="chart-grid">
+                <section class="panel">
+                  <header class="panel-header"><p class="eyebrow">Revenue performance</p><h3>$38,420</h3><small>This month - 18.2% above target</small></header>
+                  <svg class="line-chart" viewBox="0 0 600 190" role="img" aria-label="Revenue trend rising across the month">
+                    <line class="grid-line" x1="0" x2="600" y1="35" y2="35"></line>
+                    <line class="grid-line" x1="0" x2="600" y1="85" y2="85"></line>
+                    <line class="grid-line" x1="0" x2="600" y1="135" y2="135"></line>
+                    <path class="area" d="M0,155 C45,128 70,121 110,130 S170,98 215,104 S280,78 325,82 S390,49 440,64 S510,32 600,18 L600,178 L0,178 Z"></path>
+                    <path class="trend" d="M0,155 C45,128 70,121 110,130 S170,98 215,104 S280,78 325,82 S390,49 440,64 S510,32 600,18"></path>
+                  </svg>
+                </section>
+                <section class="panel">
+                  <header class="panel-header"><p class="eyebrow">Acquisition</p><h3>56.4k sessions</h3><small>Traffic by top channel</small></header>
+                  <div class="bar-chart">
+                    <div class="bar-row">Organic <span class="bar" style="--width: 100%"></span></div>
+                    <div class="bar-row">Paid <span class="bar" style="--width: 82%; --opacity: .9"></span></div>
+                    <div class="bar-row">Direct <span class="bar" style="--width: 60%; --opacity: .8"></span></div>
+                    <div class="bar-row">Social <span class="bar" style="--width: 42%; --opacity: .7"></span></div>
+                    <div class="bar-row">Referral <span class="bar" style="--width: 27%; --opacity: .6"></span></div>
+                  </div>
+                </section>
+              </div>
+              <section class="panel activity">
+                <header><p class="eyebrow">Latest activity</p><h3>Recent transactions</h3></header>
+                <table>
+                  <thead><tr><th>Customer</th><th>Product</th><th>Status</th><th>Amount</th></tr></thead>
+                  <tbody>
+                    <tr><td>Olivia Martin</td><td>Scale annual</td><td><span class="status">Completed</span></td><td>$1,920.00</td></tr>
+                    <tr><td>Noah Williams</td><td>Growth monthly</td><td><span class="status">Completed</span></td><td>$249.00</td></tr>
+                    <tr><td>Emma Thompson</td><td>Scale monthly</td><td><span class="status">Pending</span></td><td>$420.00</td></tr>
+                  </tbody>
+                </table>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="preview-frame" aria-labelledby="dark-preview-title">
+        <h2 class="preview-label" id="dark-preview-title">
+          Dark theme
+          <span>Static preview</span>
+        </h2>
+        <div class="preview dark">
+          <aside class="sidebar">
+            <div class="brand"><span class="brand-mark">+</span> Northstar</div>
+            <nav aria-label="Dark theme navigation">
+              <span class="nav-item active"><i class="nav-icon"></i> Overview</span>
+              <span class="nav-item"><i class="nav-icon"></i> Customers</span>
+              <span class="nav-item"><i class="nav-icon"></i> Revenue</span>
+              <span class="nav-item"><i class="nav-icon"></i> Products</span>
+              <span class="nav-item"><i class="nav-icon"></i> Campaigns</span>
+              <span class="nav-item"><i class="nav-icon"></i> Reports</span>
+            </nav>
+            <div class="profile">Aamir Jawaid<small>Workspace owner</small></div>
+          </aside>
+          <div class="workspace">
+            <header class="topbar">
+              <span class="search">Search metrics...</span>
+              <div class="toolbar">
+                <span class="tool" aria-label="Light theme option">Sun</span>
+                <span class="tool">Bell</span>
+                <span class="tool date">Last 30 days</span>
+              </div>
+            </header>
+            <div class="dashboard-main">
+              <div class="heading">
+                <div>
+                  <p class="eyebrow">Tuesday, September 22</p>
+                  <h2>Good evening, Aamir</h2>
+                  <p class="heading-copy">Here is what is happening across your business today.</p>
+                </div>
+                <span class="live">Live data</span>
+              </div>
+              <section class="metric-grid" aria-label="Dark theme business summary">
+                <article class="card"><span class="change">+12.4%</span><span class="card-label">Net revenue</span><strong>$128,430</strong><small>vs. previous 30 days</small></article>
+                <article class="card"><span class="change">+8.2%</span><span class="card-label">Active customers</span><strong>8,429</strong><small>642 new this period</small></article>
+                <article class="card"><span class="change">+0.6%</span><span class="card-label">Conversion rate</span><strong>5.28%</strong><small>from 4.68% last month</small></article>
+                <article class="card"><span class="change negative">-2.1%</span><span class="card-label">Avg. order value</span><strong>$84.20</strong><small>across 1,525 orders</small></article>
+              </section>
+              <div class="chart-grid">
+                <section class="panel">
+                  <header class="panel-header"><p class="eyebrow">Revenue performance</p><h3>$38,420</h3><small>This month - 18.2% above target</small></header>
+                  <svg class="line-chart" viewBox="0 0 600 190" role="img" aria-label="Revenue trend rising across the month">
+                    <line class="grid-line" x1="0" x2="600" y1="35" y2="35"></line>
+                    <line class="grid-line" x1="0" x2="600" y1="85" y2="85"></line>
+                    <line class="grid-line" x1="0" x2="600" y1="135" y2="135"></line>
+                    <path class="area" d="M0,155 C45,128 70,121 110,130 S170,98 215,104 S280,78 325,82 S390,49 440,64 S510,32 600,18 L600,178 L0,178 Z"></path>
+                    <path class="trend" d="M0,155 C45,128 70,121 110,130 S170,98 215,104 S280,78 325,82 S390,49 440,64 S510,32 600,18"></path>
+                  </svg>
+                </section>
+                <section class="panel">
+                  <header class="panel-header"><p class="eyebrow">Acquisition</p><h3>56.4k sessions</h3><small>Traffic by top channel</small></header>
+                  <div class="bar-chart">
+                    <div class="bar-row">Organic <span class="bar" style="--width: 100%"></span></div>
+                    <div class="bar-row">Paid <span class="bar" style="--width: 82%; --opacity: .9"></span></div>
+                    <div class="bar-row">Direct <span class="bar" style="--width: 60%; --opacity: .8"></span></div>
+                    <div class="bar-row">Social <span class="bar" style="--width: 42%; --opacity: .7"></span></div>
+                    <div class="bar-row">Referral <span class="bar" style="--width: 27%; --opacity: .6"></span></div>
+                  </div>
+                </section>
+              </div>
+              <section class="panel activity">
+                <header><p class="eyebrow">Latest activity</p><h3>Recent transactions</h3></header>
+                <table>
+                  <thead><tr><th>Customer</th><th>Product</th><th>Status</th><th>Amount</th></tr></thead>
+                  <tbody>
+                    <tr><td>Olivia Martin</td><td>Scale annual</td><td><span class="status">Completed</span></td><td>$1,920.00</td></tr>
+                    <tr><td>Noah Williams</td><td>Growth monthly</td><td><span class="status">Completed</span></td><td>$249.00</td></tr>
+                    <tr><td>Emma Thompson</td><td>Scale monthly</td><td><span class="status">Pending</span></td><td>$420.00</td></tr>
+                  </tbody>
+                </table>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

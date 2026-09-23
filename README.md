@@ -13,6 +13,8 @@ npm run dev
 
 Open the local URL printed by Vite. The default development experience always uses the deterministic fixtures in `src/data/demoData.ts`; it makes no backend or external data API calls. Restarting or refreshing the app returns the same KPI, chart, and transaction data.
 
+For a script-free comparison of both themes, open `/theme-preview.html`. The standalone preview uses only semantic HTML and inline CSS, so it also renders when JavaScript and external network access are unavailable.
+
 ## Commands
 
 | Command | Purpose |
