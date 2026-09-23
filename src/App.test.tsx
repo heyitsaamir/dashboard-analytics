@@ -2,6 +2,12 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import App from './App'
 
 describe('App', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+    document.documentElement.removeAttribute('data-theme')
+    document.documentElement.removeAttribute('style')
+  })
+
   it('renders the business summary and deterministic transaction data', () => {
     render(<App />)
 
@@ -20,5 +26,25 @@ describe('App', () => {
 
     fireEvent.click(screen.getAllByRole('button', { name: /close navigation/i })[0])
     expect(screen.queryByRole('button', { name: /close navigation/i })).not.toBeInTheDocument()
+  })
+
+  it('switches themes and persists the preference', () => {
+    render(<App />)
+
+    fireEvent.click(screen.getByRole('button', { name: /switch to light theme/i }))
+
+    expect(document.documentElement).toHaveAttribute('data-theme', 'light')
+    expect(document.documentElement).toHaveStyle({ colorScheme: 'light' })
+    expect(window.localStorage.getItem('northstar-theme')).toBe('light')
+    expect(screen.getByRole('button', { name: /switch to dark theme/i })).toBeInTheDocument()
+  })
+
+  it('restores a saved light theme', () => {
+    window.localStorage.setItem('northstar-theme', 'light')
+
+    render(<App />)
+
+    expect(document.documentElement).toHaveAttribute('data-theme', 'light')
+    expect(screen.getByRole('button', { name: /switch to dark theme/i })).toBeInTheDocument()
   })
 })

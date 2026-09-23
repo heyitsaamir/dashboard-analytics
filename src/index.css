@@ -1,21 +1,103 @@
 :root {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #f4f7fb;
-  background: #0b0f17;
+  color: var(--text);
+  background: var(--background);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  color-scheme: dark;
+  color-scheme: dark light;
   --background: #0b0f17;
-  --sidebar: #0e131d;
-  --panel: #111722;
-  --panel-raised: #151c29;
-  --border: #252c38;
-  --border-strong: #303848;
-  --text: #f4f7fb;
-  --text-soft: #a7b0bf;
-  --text-muted: #596274;
+  --sidebar: #101722;
+  --panel: #121925;
+  --panel-raised: #18212f;
+  --border: #364152;
+  --border-strong: #4b586c;
+  --text: #f8fafc;
+  --text-soft: #cbd5e1;
+  --text-muted: #9ba8ba;
+  --nav-text: #aeb9c9;
   --accent: #6ee7b7;
   --accent-strong: #34d399;
+  --accent-ink: #08251d;
+  --body-glow: rgba(47, 129, 105, 0.14);
+  --sidebar-background: rgba(16, 23, 34, 0.98);
+  --topbar-background: rgba(11, 15, 23, 0.9);
+  --topbar-border: rgba(54, 65, 82, 0.9);
+  --interactive-background: #18212f;
+  --interactive-border: #3c485a;
+  --active-background: #202b3a;
+  --active-border: #46556a;
+  --surface-hover: rgba(255, 255, 255, 0.055);
+  --panel-gradient: linear-gradient(145deg, rgba(24, 33, 47, 0.94), rgba(18, 25, 37, 0.98));
+  --panel-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+  --live-text: #9de1c5;
+  --live-background: rgba(55, 134, 108, 0.16);
+  --live-border: rgba(110, 231, 183, 0.3);
+  --positive-text: #9ce7c2;
+  --positive-background: rgba(64, 137, 110, 0.18);
+  --negative-text: #f3a6b2;
+  --negative-background: rgba(153, 68, 83, 0.2);
+  --warning-text: #e8c58b;
+  --warning-background: rgba(148, 102, 40, 0.2);
+  --table-header-background: rgba(255, 255, 255, 0.035);
+  --table-border: rgba(54, 65, 82, 0.8);
+  --chart-grid: #3d495b;
+  --chart-target: #94a3b8;
+  --chart-accent: #6ee7b7;
+  --chart-series-1: #6ee7b7;
+  --chart-series-2: #5bd5aa;
+  --chart-series-3: #49c49e;
+  --chart-series-4: #3cae8d;
+  --chart-series-5: #32917a;
+  --tooltip-background: #18212f;
+  --scrim: rgba(0, 0, 0, 0.68);
+}
+
+:root[data-theme="light"] {
+  --background: #f3f6f9;
+  --sidebar: #ffffff;
+  --panel: #f8fafc;
+  --panel-raised: #ffffff;
+  --border: #cbd5e1;
+  --border-strong: #a8b4c4;
+  --text: #172033;
+  --text-soft: #3c4a5f;
+  --text-muted: #5b687a;
+  --nav-text: #4b5a70;
+  --accent: #08795d;
+  --accent-strong: #06634d;
+  --accent-ink: #ffffff;
+  --body-glow: rgba(8, 121, 93, 0.1);
+  --sidebar-background: rgba(255, 255, 255, 0.98);
+  --topbar-background: rgba(243, 246, 249, 0.9);
+  --topbar-border: rgba(203, 213, 225, 0.92);
+  --interactive-background: #ffffff;
+  --interactive-border: #c5cfdb;
+  --active-background: #e8f3ef;
+  --active-border: #9ac8bb;
+  --surface-hover: rgba(23, 32, 51, 0.055);
+  --panel-gradient: linear-gradient(145deg, #ffffff, #f8fafc);
+  --panel-shadow: 0 16px 40px rgba(39, 55, 78, 0.08);
+  --live-text: #075f49;
+  --live-background: rgba(8, 121, 93, 0.1);
+  --live-border: rgba(8, 121, 93, 0.26);
+  --positive-text: #0a654d;
+  --positive-background: rgba(8, 121, 93, 0.11);
+  --negative-text: #a12f43;
+  --negative-background: rgba(161, 47, 67, 0.1);
+  --warning-text: #76530f;
+  --warning-background: rgba(153, 105, 14, 0.12);
+  --table-header-background: rgba(23, 32, 51, 0.035);
+  --table-border: rgba(203, 213, 225, 0.9);
+  --chart-grid: #d3dae4;
+  --chart-target: #657389;
+  --chart-accent: #08795d;
+  --chart-series-1: #08795d;
+  --chart-series-2: #16866a;
+  --chart-series-3: #289479;
+  --chart-series-4: #3b9f86;
+  --chart-series-5: #56aa94;
+  --tooltip-background: #ffffff;
+  --scrim: rgba(15, 23, 42, 0.58);
 }
 
 * {
@@ -31,7 +113,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 74% 12%, rgba(47, 129, 105, 0.09), transparent 27rem),
+    radial-gradient(circle at 74% 12%, var(--body-glow), transparent 27rem),
     var(--background);
 }
 
@@ -83,7 +165,7 @@ a {
   width: 100%;
   height: 100%;
   padding: 22px 14px 16px;
-  background: rgba(14, 19, 29, 0.98);
+  background: var(--sidebar-background);
   border-right: 1px solid var(--border);
 }
 
@@ -103,7 +185,7 @@ a {
   place-items: center;
   width: 31px;
   height: 31px;
-  color: #08110e;
+  color: var(--accent-ink);
   background: var(--accent);
   border-radius: 9px;
   box-shadow: 0 0 24px rgba(110, 231, 183, 0.16);
@@ -121,7 +203,7 @@ a {
   gap: 12px;
   min-height: 42px;
   padding: 0 12px;
-  color: #737d8f;
+  color: var(--nav-text);
   border: 1px solid transparent;
   border-radius: 9px;
   font-size: 14px;
@@ -131,13 +213,13 @@ a {
 
 .nav-item:hover {
   color: var(--text-soft);
-  background: rgba(255, 255, 255, 0.025);
+  background: var(--surface-hover);
 }
 
 .nav-item.active {
   color: var(--text);
-  background: #19212d;
-  border-color: #283241;
+  background: var(--active-background);
+  border-color: var(--active-border);
   box-shadow: inset 3px 0 var(--accent);
 }
 
@@ -182,8 +264,8 @@ a {
   width: 34px;
   height: 34px;
   color: var(--avatar-accent, #8ba29a);
-  background: color-mix(in srgb, var(--avatar-accent, #6ee7b7) 13%, #151c29);
-  border: 1px solid color-mix(in srgb, var(--avatar-accent, #6ee7b7) 24%, #242c38);
+  background: color-mix(in srgb, var(--avatar-accent, var(--accent)) 13%, var(--panel-raised));
+  border: 1px solid color-mix(in srgb, var(--avatar-accent, var(--accent)) 24%, var(--border));
   border-radius: 10px;
   font-size: 10px;
   font-weight: 700;
@@ -216,8 +298,8 @@ a {
   justify-content: space-between;
   height: 68px;
   padding: 0 34px;
-  background: rgba(11, 15, 23, 0.82);
-  border-bottom: 1px solid rgba(37, 44, 56, 0.82);
+  background: var(--topbar-background);
+  border-bottom: 1px solid var(--topbar-border);
   backdrop-filter: blur(18px);
 }
 
@@ -248,7 +330,7 @@ kbd {
   min-width: max-content;
   padding: 3px 6px;
   color: var(--text-muted);
-  background: #151b26;
+  background: var(--interactive-background);
   border: 1px solid var(--border);
   border-radius: 5px;
   font-family: inherit;
@@ -276,8 +358,8 @@ kbd {
   width: 36px;
   height: 36px;
   color: var(--text-soft);
-  background: #121823;
-  border: 1px solid var(--border);
+  background: var(--interactive-background);
+  border: 1px solid var(--interactive-border);
   border-radius: 9px;
 }
 
@@ -288,7 +370,7 @@ kbd {
   width: 5px;
   height: 5px;
   background: var(--accent);
-  border: 1px solid #121823;
+  border: 1px solid var(--interactive-background);
   border-radius: 50%;
 }
 
@@ -297,8 +379,8 @@ kbd {
   min-height: 36px;
   padding: 0 11px;
   color: var(--text-soft);
-  background: #121823;
-  border: 1px solid var(--border);
+  background: var(--interactive-background);
+  border: 1px solid var(--interactive-border);
   border-radius: 9px;
   font-size: 12px;
 }
@@ -357,9 +439,9 @@ h2 {
   align-items: center;
   gap: 7px;
   padding: 7px 10px;
-  color: #668b7d;
-  background: rgba(55, 134, 108, 0.08);
-  border: 1px solid rgba(74, 164, 132, 0.16);
+  color: var(--live-text);
+  background: var(--live-background);
+  border: 1px solid var(--live-border);
   border-radius: 999px;
   font-size: 10px;
   font-weight: 600;
@@ -383,10 +465,10 @@ h2 {
 
 .metric-card,
 .panel {
-  background: linear-gradient(145deg, rgba(21, 28, 41, 0.82), rgba(17, 23, 34, 0.93));
+  background: var(--panel-gradient);
   border: 1px solid var(--border);
   border-radius: 13px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
+  box-shadow: var(--panel-shadow);
 }
 
 .metric-card {
@@ -415,13 +497,13 @@ h2 {
 }
 
 .change-pill.positive {
-  color: #6a947f;
-  background: rgba(64, 137, 110, 0.09);
+  color: var(--positive-text);
+  background: var(--positive-background);
 }
 
 .change-pill.negative {
-  color: #9f6670;
-  background: rgba(153, 68, 83, 0.09);
+  color: var(--negative-text);
+  background: var(--negative-background);
 }
 
 .metric-value {
@@ -488,7 +570,7 @@ h2 {
 }
 
 .target-dot {
-  background: #596274;
+  background: var(--chart-target);
 }
 
 .chart-wrap {
@@ -499,9 +581,9 @@ h2 {
 .secondary-button {
   min-height: 30px;
   padding: 0 9px;
-  color: #596274;
-  background: #171e2a;
-  border: 1px solid #252e3b;
+  color: var(--text-soft);
+  background: var(--interactive-background);
+  border: 1px solid var(--interactive-border);
   border-radius: 7px;
   font-size: 10px;
   font-weight: 600;
@@ -535,7 +617,7 @@ table {
 th {
   padding: 10px 17px;
   color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.012);
+  background: var(--table-header-background);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   font-size: 9px;
@@ -547,7 +629,7 @@ th {
 
 td {
   padding: 12px 17px;
-  border-bottom: 1px solid rgba(37, 44, 56, 0.72);
+  border-bottom: 1px solid var(--table-border);
   font-size: 11px;
   white-space: nowrap;
 }
@@ -561,7 +643,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background: rgba(255, 255, 255, 0.014);
+  background: var(--surface-hover);
 }
 
 .customer-cell {
@@ -609,21 +691,21 @@ tbody tr:hover {
 }
 
 .status-badge.completed {
-  color: #5f8576;
-  background: rgba(53, 120, 96, 0.1);
-  border: 1px solid rgba(69, 143, 116, 0.13);
+  color: var(--positive-text);
+  background: var(--positive-background);
+  border: 1px solid color-mix(in srgb, var(--positive-text) 32%, transparent);
 }
 
 .status-badge.pending {
-  color: #8e7955;
-  background: rgba(148, 102, 40, 0.1);
-  border: 1px solid rgba(167, 122, 61, 0.13);
+  color: var(--warning-text);
+  background: var(--warning-background);
+  border: 1px solid color-mix(in srgb, var(--warning-text) 32%, transparent);
 }
 
 .status-badge.refunded {
-  color: #93626b;
-  background: rgba(140, 60, 74, 0.1);
-  border: 1px solid rgba(155, 76, 90, 0.13);
+  color: var(--negative-text);
+  background: var(--negative-background);
+  border: 1px solid color-mix(in srgb, var(--negative-text) 32%, transparent);
 }
 
 .mobile-navigation,
@@ -699,7 +781,7 @@ tbody tr:hover {
     display: block;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.58);
+    background: var(--scrim);
     border: 0;
     backdrop-filter: blur(2px);
   }
@@ -714,7 +796,7 @@ tbody tr:hover {
     width: 34px;
     height: 34px;
     color: var(--text);
-    background: #161d29;
+    background: var(--interactive-background);
     border: 1px solid var(--border-strong);
     border-radius: 9px;
   }

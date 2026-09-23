@@ -1,6 +1,6 @@
 # Northstar Analytics
 
-A polished, responsive dark-mode analytics dashboard built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
+A polished, responsive analytics dashboard with accessible dark and light themes, built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
 
 ## Getting started
 
@@ -31,6 +31,7 @@ Open the local URL printed by Vite. The default development experience always us
 - **Recharts** renders responsive revenue and acquisition visualizations.
 - **Deterministic fixtures** in `src/data/demoData.ts` are the single local data source for KPIs, charts, and recent transactions.
 - **Component-focused UI** separates navigation, header, metric cards, charts, and the activity table under `src/components`.
+- **Persistent themes** follow the operating-system preference on first visit and save subsequent dark/light selections locally.
 - **Vitest + Testing Library** cover critical rendering, navigation behavior, fixture stability, and data formatting.
 
 ## PWA behavior
