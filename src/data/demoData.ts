@@ -82,7 +82,7 @@ export const activities: Activity[] = [
     status: 'Completed',
     time: '2 min ago',
     initials: 'OM',
-    accent: '#6ee7b7',
+    accent: '#60a5fa',
   },
   {
     id: 'INV-2047',
