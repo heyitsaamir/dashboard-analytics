@@ -10,7 +10,7 @@ import {
 } from 'recharts'
 import { channelSeries } from '../data/demoData'
 
-const colors = ['#6ee7b7', '#56caa2', '#44ad8d', '#369079', '#2b7464']
+const colors = ['#60a5fa', '#4f8fe8', '#3f7bd3', '#3268ba', '#28569e']
 
 export function ChannelChart() {
   return (
@@ -30,12 +30,12 @@ export function ChannelChart() {
           initialDimension={{ width: 420, height: 270 }}
         >
           <BarChart data={channelSeries} layout="vertical" margin={{ top: 6, right: 10, left: 2, bottom: 0 }}>
-            <CartesianGrid stroke="#252b38" horizontal={false} strokeDasharray="3 3" />
+            <CartesianGrid stroke="#213657" horizontal={false} strokeDasharray="3 3" />
             <XAxis
               type="number"
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#596274', fontSize: 11 }}
+              tick={{ fill: '#667b9e', fontSize: 11 }}
               tickFormatter={(value: number) => `${value / 1000}k`}
             />
             <YAxis
@@ -44,14 +44,14 @@ export function ChannelChart() {
               width={62}
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#596274', fontSize: 12 }}
+              tick={{ fill: '#667b9e', fontSize: 12 }}
             />
             <Tooltip
               cursor={{ fill: 'rgba(255,255,255,0.025)' }}
               formatter={(value) => [Number(value ?? 0).toLocaleString(), 'Sessions']}
               contentStyle={{
-                background: '#171e2c',
-                border: '1px solid #303848',
+                background: '#10213e',
+                border: '1px solid #2c4770',
                 borderRadius: 10,
                 color: '#f8fafc',
               }}
