@@ -10,7 +10,7 @@ import {
 } from 'recharts'
 import { channelSeries } from '../data/demoData'
 
-const colors = ['#60a5fa', '#4f8fe8', '#3f7bd3', '#3268ba', '#28569e']
+const colors = ['#93c5fd', '#7db5f5', '#67a4ed', '#5292e3', '#3d7fd5']
 
 export function ChannelChart() {
   return (
