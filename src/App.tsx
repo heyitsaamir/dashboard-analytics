@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
+import { Celebration, type CelebrationType } from './components/Celebration'
 import { ChannelChart } from './components/ChannelChart'
 import { Header } from './components/Header'
 import { MetricCard } from './components/MetricCard'
@@ -10,9 +11,29 @@ import { metrics } from './data/demoData'
 
 function App() {
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const [celebration, setCelebration] = useState<{
+    id: number
+    type: CelebrationType
+  } | null>(null)
+
+  const launchCelebration = (type: CelebrationType) => {
+    setCelebration((current) => ({
+      id: (current?.id ?? 0) + 1,
+      type,
+    }))
+  }
 
   return (
     <div className="app-shell">
+      {celebration && (
+        <Celebration
+          key={celebration.id}
+          type={celebration.type}
+          onComplete={() =>
+            setCelebration((current) => (current?.id === celebration.id ? null : current))
+          }
+        />
+      )}
       <div className={`mobile-navigation${navigationOpen ? ' open' : ''}`}>
         {navigationOpen && (
           <button
@@ -37,7 +58,10 @@ function App() {
       </div>
 
       <div className="workspace">
-        <Header onMenuClick={() => setNavigationOpen(true)} />
+        <Header
+          onCelebrate={launchCelebration}
+          onMenuClick={() => setNavigationOpen(true)}
+        />
         <main>
           <div className="page-heading">
             <div>
