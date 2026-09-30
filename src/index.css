@@ -71,6 +71,10 @@ a {
   min-height: 100vh;
 }
 
+.app-shell.font-comic {
+  --font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
 .desktop-navigation {
   position: fixed;
   inset: 0 auto 0 0;
@@ -264,6 +268,7 @@ kbd {
 
 .icon-button,
 .date-control,
+.font-toggle,
 .secondary-button,
 .text-button {
   display: inline-flex;
@@ -294,6 +299,17 @@ kbd {
 }
 
 .date-control {
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 11px;
+  color: var(--text-soft);
+  background: #121823;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-size: 12px;
+}
+
+.font-toggle {
   gap: 8px;
   min-height: 36px;
   padding: 0 11px;
@@ -671,8 +687,14 @@ tbody tr:hover {
   }
 
   .search-box kbd,
-  .date-control span {
+  .date-control span,
+  .font-toggle span {
     display: none;
+  }
+
+  .font-toggle {
+    width: 36px;
+    padding: 0;
   }
 
   main {
