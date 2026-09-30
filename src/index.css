@@ -310,8 +310,10 @@ kbd {
 }
 
 .font-toggle {
+  flex: 0 0 auto;
   gap: 8px;
   min-height: 36px;
+  margin-right: 16px;
   padding: 0 11px;
   color: var(--text-soft);
   background: #121823;
@@ -694,6 +696,7 @@ tbody tr:hover {
 
   .font-toggle {
     width: 36px;
+    margin-right: 10px;
     padding: 0;
   }
 

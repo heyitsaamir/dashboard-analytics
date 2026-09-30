@@ -19,6 +19,14 @@ export function Header({ font, onFontToggle, onMenuClick }: HeaderProps) {
       >
         <Menu size={20} />
       </button>
+      <button
+        className="font-toggle"
+        onClick={onFontToggle}
+        aria-label={`Switch to ${nextFontName}`}
+      >
+        <Type size={17} aria-hidden="true" />
+        <span>{fontName}</span>
+      </button>
       <div className="search-box">
         <Search size={17} aria-hidden="true" />
         <input aria-label="Search dashboard" placeholder="Search metrics..." />
@@ -33,14 +41,6 @@ export function Header({ font, onFontToggle, onMenuClick }: HeaderProps) {
           <CalendarDays size={17} />
           <span>Last 30 days</span>
           <ChevronDown size={15} />
-        </button>
-        <button
-          className="font-toggle"
-          onClick={onFontToggle}
-          aria-label={`Switch to ${nextFontName}`}
-        >
-          <Type size={17} aria-hidden="true" />
-          <span>{fontName}</span>
         </button>
       </div>
     </header>
