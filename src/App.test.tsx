@@ -21,4 +21,17 @@ describe('App', () => {
     fireEvent.click(screen.getAllByRole('button', { name: /close navigation/i })[0])
     expect(screen.queryByRole('button', { name: /close navigation/i })).not.toBeInTheDocument()
   })
+
+  it('shows and removes balloons from the decoration dropdown', () => {
+    render(<App />)
+
+    const decorationSelect = screen.getByRole('combobox', { name: /page decoration/i })
+    expect(screen.queryByTestId('balloon-overlay')).not.toBeInTheDocument()
+
+    fireEvent.change(decorationSelect, { target: { value: 'balloons' } })
+    expect(screen.getByTestId('balloon-overlay')).toBeInTheDocument()
+
+    fireEvent.change(decorationSelect, { target: { value: 'none' } })
+    expect(screen.queryByTestId('balloon-overlay')).not.toBeInTheDocument()
+  })
 })
