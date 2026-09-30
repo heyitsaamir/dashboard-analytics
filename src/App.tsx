@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
+import { BalloonOverlay } from './components/BalloonOverlay'
 import { ChannelChart } from './components/ChannelChart'
 import { Header } from './components/Header'
 import { MetricCard } from './components/MetricCard'
@@ -10,9 +11,11 @@ import { metrics } from './data/demoData'
 
 function App() {
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const [decoration, setDecoration] = useState<'none' | 'balloons'>('none')
 
   return (
     <div className="app-shell">
+      {decoration === 'balloons' && <BalloonOverlay />}
       <div className={`mobile-navigation${navigationOpen ? ' open' : ''}`}>
         {navigationOpen && (
           <button
@@ -37,7 +40,11 @@ function App() {
       </div>
 
       <div className="workspace">
-        <Header onMenuClick={() => setNavigationOpen(true)} />
+        <Header
+          decoration={decoration}
+          onDecorationChange={setDecoration}
+          onMenuClick={() => setNavigationOpen(true)}
+        />
         <main>
           <div className="page-heading">
             <div>
