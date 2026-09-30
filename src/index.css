@@ -1,5 +1,5 @@
 :root {
-  --font-family: "Comic Sans MS", "Comic Sans", cursive;
+  --font-family: "Courier New", Courier, monospace;
   font-family: var(--font-family);
   color: #f4f7fb;
   background: #0b0f17;
