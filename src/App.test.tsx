@@ -21,4 +21,26 @@ describe('App', () => {
     fireEvent.click(screen.getAllByRole('button', { name: /close navigation/i })[0])
     expect(screen.queryByRole('button', { name: /close navigation/i })).not.toBeInTheDocument()
   })
+
+  it('launches repeatable celebration effects from the top bar', () => {
+    const { container } = render(<App />)
+    const picker = screen.getByRole('combobox', { name: /celebration effect/i })
+
+    expect(screen.queryByTestId('celebration-effect')).not.toBeInTheDocument()
+
+    fireEvent.change(picker, { target: { value: 'balloons' } })
+    expect(screen.getByTestId('celebration-effect')).toHaveAttribute(
+      'data-effect',
+      'balloons',
+    )
+    expect(container.querySelectorAll('.celebration-particle')).toHaveLength(12)
+    expect(picker).toHaveValue('')
+
+    fireEvent.change(picker, { target: { value: 'confetti' } })
+    expect(screen.getByTestId('celebration-effect')).toHaveAttribute(
+      'data-effect',
+      'confetti',
+    )
+    expect(container.querySelectorAll('.celebration-particle')).toHaveLength(42)
+  })
 })
