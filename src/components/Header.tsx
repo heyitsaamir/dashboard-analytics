@@ -1,10 +1,15 @@
-import { Bell, CalendarDays, ChevronDown, Menu, Search } from 'lucide-react'
+import { Bell, CalendarDays, ChevronDown, Menu, Search, Type } from 'lucide-react'
 
 type HeaderProps = {
+  font: 'courier' | 'comic'
+  onFontToggle: () => void
   onMenuClick: () => void
 }
 
-export function Header({ onMenuClick }: HeaderProps) {
+export function Header({ font, onFontToggle, onMenuClick }: HeaderProps) {
+  const fontName = font === 'courier' ? 'Courier' : 'Comic Sans'
+  const nextFontName = font === 'courier' ? 'Comic Sans' : 'Courier'
+
   return (
     <header className="topbar">
       <button
@@ -13,6 +18,14 @@ export function Header({ onMenuClick }: HeaderProps) {
         aria-label="Open navigation"
       >
         <Menu size={20} />
+      </button>
+      <button
+        className="font-toggle"
+        onClick={onFontToggle}
+        aria-label={`Switch to ${nextFontName}`}
+      >
+        <Type size={17} aria-hidden="true" />
+        <span>{fontName}</span>
       </button>
       <div className="search-box">
         <Search size={17} aria-hidden="true" />

@@ -8,11 +8,18 @@ import { RevenueChart } from './components/RevenueChart'
 import { Sidebar } from './components/Sidebar'
 import { metrics } from './data/demoData'
 
+type FontPreference = 'courier' | 'comic'
+
 function App() {
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const [font, setFont] = useState<FontPreference>('courier')
+
+  const toggleFont = () => {
+    setFont((currentFont) => (currentFont === 'courier' ? 'comic' : 'courier'))
+  }
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell font-${font}`}>
       <div className={`mobile-navigation${navigationOpen ? ' open' : ''}`}>
         {navigationOpen && (
           <button
@@ -37,7 +44,11 @@ function App() {
       </div>
 
       <div className="workspace">
-        <Header onMenuClick={() => setNavigationOpen(true)} />
+        <Header
+          font={font}
+          onFontToggle={toggleFont}
+          onMenuClick={() => setNavigationOpen(true)}
+        />
         <main>
           <div className="page-heading">
             <div>

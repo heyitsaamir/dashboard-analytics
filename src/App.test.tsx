@@ -21,4 +21,16 @@ describe('App', () => {
     fireEvent.click(screen.getAllByRole('button', { name: /close navigation/i })[0])
     expect(screen.queryByRole('button', { name: /close navigation/i })).not.toBeInTheDocument()
   })
+
+  it('toggles the dashboard font', () => {
+    render(<App />)
+
+    const fontToggle = screen.getByRole('button', { name: /switch to comic sans/i })
+    expect(document.querySelector('.app-shell')).toHaveClass('font-courier')
+
+    fireEvent.click(fontToggle)
+
+    expect(document.querySelector('.app-shell')).toHaveClass('font-comic')
+    expect(screen.getByRole('button', { name: /switch to courier/i })).toBeInTheDocument()
+  })
 })
