@@ -10,6 +10,7 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: /recent transactions/i })).toBeInTheDocument()
     expect(screen.getByText('Olivia Martin')).toBeInTheDocument()
     expect(screen.getByText('INV-2048')).toBeInTheDocument()
+    expect(screen.getByTestId('dashboard-confetti')).toHaveAttribute('aria-hidden', 'true')
   })
 
   it('opens and closes mobile navigation', () => {

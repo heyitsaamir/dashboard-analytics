@@ -308,9 +308,69 @@ kbd {
 }
 
 main {
+  position: relative;
   width: min(100%, 1540px);
   margin: 0 auto;
   padding: 34px;
+}
+
+main > :not(.confetti-layer) {
+  position: relative;
+  z-index: 1;
+}
+
+.confetti-layer {
+  position: absolute;
+  inset: 0 14px auto;
+  height: 128px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 7px;
+  height: 12px;
+  background: #6ee7b7;
+  border-radius: 2px;
+  opacity: 0.72;
+  animation: confetti-float 5s ease-in-out infinite alternate;
+}
+
+.confetti-piece:nth-child(5n + 2) {
+  width: 9px;
+  height: 9px;
+  background: #60a5fa;
+  border-radius: 50%;
+}
+
+.confetti-piece:nth-child(5n + 3) {
+  width: 11px;
+  height: 5px;
+  background: #fbbf24;
+}
+
+.confetti-piece:nth-child(5n + 4) {
+  width: 6px;
+  height: 10px;
+  background: #f472b6;
+}
+
+.confetti-piece:nth-child(5n) {
+  width: 8px;
+  height: 8px;
+  background: #a78bfa;
+  border-radius: 50% 0 50% 50%;
+}
+
+@keyframes confetti-float {
+  from {
+    translate: 0 -3px;
+  }
+
+  to {
+    translate: 0 7px;
+  }
 }
 
 .page-heading {
