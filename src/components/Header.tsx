@@ -7,17 +7,22 @@ type HeaderProps = {
 export function Header({ onMenuClick }: HeaderProps) {
   return (
     <header className="topbar">
-      <button
-        className="icon-button mobile-menu"
-        onClick={onMenuClick}
-        aria-label="Open navigation"
-      >
-        <Menu size={20} />
-      </button>
-      <div className="search-box">
-        <Search size={17} aria-hidden="true" />
-        <input aria-label="Search dashboard" placeholder="Search metrics..." />
-        <kbd>⌘ K</kbd>
+      <div className="topbar-leading">
+        <button
+          className="icon-button mobile-menu"
+          onClick={onMenuClick}
+          aria-label="Open navigation"
+        >
+          <Menu size={20} />
+        </button>
+        <span className="topbar-snail" role="img" aria-label="Snail">
+          🐌
+        </span>
+        <div className="search-box">
+          <Search size={17} aria-hidden="true" />
+          <input aria-label="Search dashboard" placeholder="Search metrics..." />
+          <kbd>⌘ K</kbd>
+        </div>
       </div>
       <div className="topbar-actions">
         <button className="icon-button notification-button" aria-label="Notifications">

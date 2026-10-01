@@ -221,6 +221,19 @@ a {
   backdrop-filter: blur(18px);
 }
 
+.topbar-leading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.topbar-snail {
+  flex: 0 0 auto;
+  font-size: 24px;
+  line-height: 1;
+}
+
 .search-box {
   display: flex;
   align-items: center;
@@ -661,7 +674,11 @@ tbody tr:hover {
 
   .mobile-menu {
     display: inline-flex;
-    margin-right: 10px;
+  }
+
+  .topbar-leading {
+    flex: 1;
+    gap: 10px;
   }
 
   .search-box {
