@@ -1,6 +1,22 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import App from './App'
 
+function mockSystemTheme(theme: 'dark' | 'light') {
+  Object.defineProperty(window, 'matchMedia', {
+    configurable: true,
+    value: vi.fn().mockImplementation((query: string) => ({
+      matches: theme === 'light',
+      media: query,
+      onchange: null,
+      addEventListener: vi.fn(),
+      addListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+      removeEventListener: vi.fn(),
+      removeListener: vi.fn(),
+    })),
+  })
+}
+
 describe('App', () => {
   beforeEach(() => {
     const values = new Map<string, string>()
@@ -18,7 +34,14 @@ describe('App', () => {
         setItem: (key: string, value: string) => values.set(key, value),
       } satisfies Storage,
     })
+    mockSystemTheme('dark')
     delete document.documentElement.dataset.theme
+
+    const themeColor =
+      document.querySelector<HTMLMetaElement>('meta[name="theme-color"]') ??
+      document.head.appendChild(document.createElement('meta'))
+    themeColor.name = 'theme-color'
+    themeColor.content = '#080c12'
   })
 
   it('renders the business summary and deterministic transaction data', () => {
@@ -50,6 +73,25 @@ describe('App', () => {
 
     expect(document.documentElement).toHaveAttribute('data-theme', 'light')
     expect(window.localStorage.getItem('northstar-theme')).toBe('light')
+    expect(document.querySelector('meta[name="theme-color"]')).toHaveAttribute('content', '#f2f5f9')
     expect(screen.getByRole('button', { name: /switch to dark theme/i })).toBeInTheDocument()
+  })
+
+  it('uses a saved theme preference', () => {
+    window.localStorage.setItem('northstar-theme', 'light')
+
+    render(<App />)
+
+    expect(document.documentElement).toHaveAttribute('data-theme', 'light')
+    expect(screen.getByRole('button', { name: /switch to dark theme/i })).toBeInTheDocument()
+  })
+
+  it('uses the system theme when no preference has been saved', () => {
+    mockSystemTheme('light')
+
+    render(<App />)
+
+    expect(document.documentElement).toHaveAttribute('data-theme', 'light')
+    expect(window.matchMedia).toHaveBeenCalledWith('(prefers-color-scheme: light)')
   })
 })

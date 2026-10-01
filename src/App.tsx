@@ -7,29 +7,19 @@ import { MetricCard } from './components/MetricCard'
 import { RevenueChart } from './components/RevenueChart'
 import { Sidebar } from './components/Sidebar'
 import { metrics } from './data/demoData'
+import { applyTheme, getInitialTheme, saveTheme, type Theme } from './theme'
 
-export type Theme = 'dark' | 'light'
-
-function getInitialTheme(): Theme {
-  const savedTheme = window.localStorage?.getItem('northstar-theme')
-
-  if (savedTheme === 'dark' || savedTheme === 'light') {
-    return savedTheme
-  }
-
-  return typeof window.matchMedia === 'function' &&
-    window.matchMedia('(prefers-color-scheme: light)').matches
-    ? 'light'
-    : 'dark'
+type AppProps = {
+  initialTheme?: Theme
 }
 
-function App() {
+function App({ initialTheme }: AppProps) {
   const [navigationOpen, setNavigationOpen] = useState(false)
-  const [theme, setTheme] = useState<Theme>(getInitialTheme)
+  const [theme, setTheme] = useState<Theme>(() => initialTheme ?? getInitialTheme())
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme
-    window.localStorage?.setItem('northstar-theme', theme)
+    applyTheme(theme)
+    saveTheme(theme)
   }, [theme])
 
   return (

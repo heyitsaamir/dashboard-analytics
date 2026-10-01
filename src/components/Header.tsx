@@ -1,5 +1,5 @@
 import { Bell, CalendarDays, ChevronDown, Menu, Moon, Search, Sun } from 'lucide-react'
-import type { Theme } from '../App'
+import type { Theme } from '../theme'
 
 type HeaderProps = {
   onMenuClick: () => void
