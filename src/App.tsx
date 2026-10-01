@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
 import { ChannelChart } from './components/ChannelChart'
@@ -7,9 +7,20 @@ import { MetricCard } from './components/MetricCard'
 import { RevenueChart } from './components/RevenueChart'
 import { Sidebar } from './components/Sidebar'
 import { metrics } from './data/demoData'
+import { applyTheme, getInitialTheme, saveTheme, type Theme } from './theme'
 
-function App() {
+type AppProps = {
+  initialTheme?: Theme
+}
+
+function App({ initialTheme }: AppProps) {
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const [theme, setTheme] = useState<Theme>(() => initialTheme ?? getInitialTheme())
+
+  useEffect(() => {
+    applyTheme(theme)
+    saveTheme(theme)
+  }, [theme])
 
   return (
     <div className="app-shell">
@@ -37,7 +48,11 @@ function App() {
       </div>
 
       <div className="workspace">
-        <Header onMenuClick={() => setNavigationOpen(true)} />
+        <Header
+          onMenuClick={() => setNavigationOpen(true)}
+          onThemeToggle={() => setTheme((currentTheme) => currentTheme === 'dark' ? 'light' : 'dark')}
+          theme={theme}
+        />
         <main>
           <div className="page-heading">
             <div>
