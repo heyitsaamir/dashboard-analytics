@@ -39,6 +39,13 @@ function App() {
       <div className="workspace">
         <Header onMenuClick={() => setNavigationOpen(true)} />
         <main>
+          <div
+            className="page-mascot"
+            role="img"
+            aria-label="Monkey sitting at the top of the dashboard"
+          >
+            <span aria-hidden="true">🐒</span>
+          </div>
           <div className="page-heading">
             <div>
               <p className="eyebrow">Tuesday, September 22</p>

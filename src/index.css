@@ -313,6 +313,36 @@ main {
   padding: 34px;
 }
 
+.page-mascot {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  width: 82px;
+  height: 52px;
+  margin: -24px auto 12px;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-size: 42px;
+  line-height: 1;
+}
+
+.page-mascot::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: #7b5435;
+  border-radius: 999px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28);
+  content: "";
+}
+
+.page-mascot span {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.32));
+}
+
 .page-heading {
   display: flex;
   align-items: flex-end;
