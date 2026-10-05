@@ -5,6 +5,9 @@ describe('App', () => {
   it('renders the business summary and deterministic transaction data', () => {
     render(<App />)
 
+    expect(
+      screen.getByRole('img', { name: /monkey sitting at the top of the dashboard/i }),
+    ).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /good evening, aamir/i })).toBeInTheDocument()
     expect(screen.getByText('$128,430')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /recent transactions/i })).toBeInTheDocument()
