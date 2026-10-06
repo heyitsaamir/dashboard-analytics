@@ -3,13 +3,14 @@ import App from './App'
 
 describe('App', () => {
   it('renders the business summary and deterministic transaction data', () => {
-    render(<App />)
+    const { container } = render(<App />)
 
     expect(screen.getByRole('heading', { name: /good evening, aamir/i })).toBeInTheDocument()
     expect(screen.getByText('$128,430')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /recent transactions/i })).toBeInTheDocument()
     expect(screen.getByText('Olivia Martin')).toBeInTheDocument()
     expect(screen.getByText('INV-2048')).toBeInTheDocument()
+    expect(container.querySelector('.decorative-cat')).toBeInTheDocument()
   })
 
   it('opens and closes mobile navigation', () => {

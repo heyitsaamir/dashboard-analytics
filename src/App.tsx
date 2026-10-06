@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
 import { ChannelChart } from './components/ChannelChart'
+import { DecorativeCat } from './components/DecorativeCat'
 import { Header } from './components/Header'
 import { MetricCard } from './components/MetricCard'
 import { RevenueChart } from './components/RevenueChart'
@@ -65,6 +66,7 @@ function App() {
           <ActivityTable />
         </main>
       </div>
+      <DecorativeCat />
     </div>
   )
 }

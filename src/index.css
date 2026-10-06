@@ -631,6 +631,99 @@ tbody tr:hover {
   display: none;
 }
 
+.decorative-cat {
+  position: fixed;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: -2px;
+  z-index: 15;
+  width: clamp(104px, 10vw, 142px);
+  pointer-events: none;
+  filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.35));
+  transform-origin: bottom right;
+  animation: cat-arrive 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.decorative-cat svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.cat-shadow {
+  fill: rgba(0, 0, 0, 0.24);
+}
+
+.cat-body,
+.cat-head {
+  fill: #18212e;
+  stroke: #344153;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.cat-chest {
+  fill: #202c3b;
+  opacity: 0.82;
+}
+
+.cat-tail,
+.cat-mouth,
+.cat-whiskers,
+.cat-paw {
+  fill: none;
+  stroke: #344153;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cat-ear {
+  fill: #506071;
+  opacity: 0.72;
+}
+
+.cat-eye {
+  fill: var(--accent);
+  opacity: 0.88;
+}
+
+.cat-pupil {
+  fill: #0b0f17;
+}
+
+.cat-muzzle {
+  fill: #84909f;
+}
+
+.cat-mouth,
+.cat-whiskers {
+  stroke-width: 1.5;
+}
+
+.cat-paw {
+  stroke-width: 2;
+}
+
+.cat-spark {
+  fill: var(--accent);
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.6;
+}
+
+@keyframes cat-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(34px) rotate(3deg);
+  }
+  to {
+    opacity: 0.96;
+    transform: translateY(0) rotate(0);
+  }
+}
+
 @media (max-width: 1100px) {
   .metric-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -721,6 +814,12 @@ tbody tr:hover {
 }
 
 @media (max-width: 560px) {
+  .decorative-cat {
+    right: max(6px, env(safe-area-inset-right));
+    width: 88px;
+    opacity: 0.9;
+  }
+
   .page-heading {
     align-items: flex-start;
   }
