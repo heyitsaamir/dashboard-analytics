@@ -31,6 +31,7 @@ Open the local URL printed by Vite. The default development experience always us
 - **Recharts** renders responsive revenue and acquisition visualizations.
 - **Deterministic fixtures** in `src/data/demoData.ts` are the single local data source for KPIs, charts, and recent transactions.
 - **Component-focused UI** separates navigation, header, metric cards, charts, and the activity table under `src/components`.
+- **Font customization** is available from the top-left header control and persists locally across visits.
 - **Vitest + Testing Library** cover critical rendering, navigation behavior, fixture stability, and data formatting.
 
 ## PWA behavior

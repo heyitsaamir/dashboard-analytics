@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
 import { ChannelChart } from './components/ChannelChart'
@@ -7,12 +7,35 @@ import { MetricCard } from './components/MetricCard'
 import { RevenueChart } from './components/RevenueChart'
 import { Sidebar } from './components/Sidebar'
 import { metrics } from './data/demoData'
+import {
+  defaultDashboardFont,
+  getDashboardFontFamily,
+  isDashboardFont,
+  type DashboardFont,
+} from './dashboardFonts'
+
+const fontStorageKey = 'northstar-dashboard-font'
+
+type DashboardStyles = CSSProperties & {
+  '--dashboard-font': string
+}
 
 function App() {
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const [dashboardFont, setDashboardFont] = useState<DashboardFont>(() => {
+    const savedFont = localStorage.getItem(fontStorageKey)
+    return isDashboardFont(savedFont) ? savedFont : defaultDashboardFont
+  })
+  const dashboardStyles: DashboardStyles = {
+    '--dashboard-font': getDashboardFontFamily(dashboardFont),
+  }
+
+  useEffect(() => {
+    localStorage.setItem(fontStorageKey, dashboardFont)
+  }, [dashboardFont])
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" style={dashboardStyles}>
       <div className={`mobile-navigation${navigationOpen ? ' open' : ''}`}>
         {navigationOpen && (
           <button
@@ -37,7 +60,11 @@ function App() {
       </div>
 
       <div className="workspace">
-        <Header onMenuClick={() => setNavigationOpen(true)} />
+        <Header
+          dashboardFont={dashboardFont}
+          onFontChange={setDashboardFont}
+          onMenuClick={() => setNavigationOpen(true)}
+        />
         <main>
           <div className="page-heading">
             <div>

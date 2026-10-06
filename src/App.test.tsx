@@ -1,7 +1,11 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import App from './App'
 
 describe('App', () => {
+  beforeEach(() => {
+    localStorage.clear()
+  })
+
   it('renders the business summary and deterministic transaction data', () => {
     render(<App />)
 
@@ -20,5 +24,26 @@ describe('App', () => {
 
     fireEvent.click(screen.getAllByRole('button', { name: /close navigation/i })[0])
     expect(screen.queryByRole('button', { name: /close navigation/i })).not.toBeInTheDocument()
+  })
+
+  it('changes and saves the dashboard font', async () => {
+    const { unmount } = render(<App />)
+
+    const fontSelect = screen.getByRole('combobox', { name: /dashboard font/i })
+    const appShell = screen.getByRole('main').closest('.app-shell') as HTMLElement
+
+    expect(fontSelect).toHaveValue('sans')
+
+    fireEvent.change(fontSelect, { target: { value: 'serif' } })
+
+    expect(appShell.style.getPropertyValue('--dashboard-font')).toContain('Georgia')
+    await waitFor(() =>
+      expect(localStorage.getItem('northstar-dashboard-font')).toBe('serif'),
+    )
+
+    unmount()
+    render(<App />)
+
+    expect(screen.getByRole('combobox', { name: /dashboard font/i })).toHaveValue('serif')
   })
 })
