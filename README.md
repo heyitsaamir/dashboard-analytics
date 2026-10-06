@@ -2,6 +2,8 @@
 
 A polished, responsive dark-mode analytics dashboard built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
 
+Use the **Dashboard font** dropdown beneath the Northstar logo to switch the interface between modern sans, Arial, Georgia, and monospace font stacks. The preference is saved in the browser and remains available offline.
+
 ## Getting started
 
 Requires an active LTS release of Node.js (`20.19+`, `22.13+`, or `24+`).

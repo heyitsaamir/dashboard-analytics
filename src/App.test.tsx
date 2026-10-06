@@ -21,4 +21,19 @@ describe('App', () => {
     fireEvent.click(screen.getAllByRole('button', { name: /close navigation/i })[0])
     expect(screen.queryByRole('button', { name: /close navigation/i })).not.toBeInTheDocument()
   })
+
+  it('changes and persists the dashboard font', () => {
+    localStorage.clear()
+    const { container } = render(<App />)
+    const fontSelectors = screen.getAllByRole('combobox', { name: /dashboard font/i })
+
+    fireEvent.change(fontSelectors[0], { target: { value: 'georgia' } })
+
+    expect(fontSelectors).toHaveLength(2)
+    fontSelectors.forEach((selector) => expect(selector).toHaveValue('georgia'))
+    expect(container.firstElementChild).toHaveStyle({
+      '--app-font-family': 'Georgia, "Times New Roman", serif',
+    })
+    expect(localStorage.getItem('northstar-dashboard-font')).toBe('georgia')
+  })
 })

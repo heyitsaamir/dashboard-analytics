@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type CSSProperties } from 'react'
 import { X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
 import { ChannelChart } from './components/ChannelChart'
@@ -7,12 +7,31 @@ import { MetricCard } from './components/MetricCard'
 import { RevenueChart } from './components/RevenueChart'
 import { Sidebar } from './components/Sidebar'
 import { metrics } from './data/demoData'
+import {
+  DEFAULT_FONT,
+  FONT_STORAGE_KEY,
+  fontOptions,
+  isFontId,
+  type FontId,
+} from './fonts'
 
 function App() {
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const [font, setFont] = useState<FontId>(() => {
+    const savedFont = localStorage.getItem(FONT_STORAGE_KEY)
+    return isFontId(savedFont) ? savedFont : DEFAULT_FONT
+  })
+
+  const handleFontChange = (nextFont: FontId) => {
+    setFont(nextFont)
+    localStorage.setItem(FONT_STORAGE_KEY, nextFont)
+  }
 
   return (
-    <div className="app-shell">
+    <div
+      className="app-shell"
+      style={{ '--app-font-family': fontOptions[font].stack } as CSSProperties}
+    >
       <div className={`mobile-navigation${navigationOpen ? ' open' : ''}`}>
         {navigationOpen && (
           <button
@@ -23,7 +42,7 @@ function App() {
             <X size={20} />
           </button>
         )}
-        <Sidebar />
+        <Sidebar font={font} onFontChange={handleFontChange} />
       </div>
       {navigationOpen && (
         <button
@@ -33,7 +52,7 @@ function App() {
         />
       )}
       <div className="desktop-navigation">
-        <Sidebar />
+        <Sidebar font={font} onFontChange={handleFontChange} />
       </div>
 
       <div className="workspace">
