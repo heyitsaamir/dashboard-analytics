@@ -2,6 +2,10 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import App from './App'
 
 describe('App', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+  })
+
   it('renders the business summary and deterministic transaction data', () => {
     render(<App />)
 
@@ -20,5 +24,23 @@ describe('App', () => {
 
     fireEvent.click(screen.getAllByRole('button', { name: /close navigation/i })[0])
     expect(screen.queryByRole('button', { name: /close navigation/i })).not.toBeInTheDocument()
+  })
+
+  it('changes and remembers the dashboard font', () => {
+    const { container, unmount } = render(<App />)
+    const fontSelect = screen.getByRole('combobox', { name: /dashboard font/i })
+
+    fireEvent.change(fontSelect, { target: { value: 'serif' } })
+
+    expect(fontSelect).toHaveValue('serif')
+    expect(container.querySelector('.app-shell')).toHaveStyle(
+      '--font-family: Georgia, "Times New Roman", serif',
+    )
+    expect(window.localStorage.getItem('northstar-dashboard-font')).toBe('serif')
+
+    unmount()
+    render(<App />)
+
+    expect(screen.getByRole('combobox', { name: /dashboard font/i })).toHaveValue('serif')
   })
 })

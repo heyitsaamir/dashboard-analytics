@@ -1,5 +1,6 @@
 :root {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-family);
   color: #f4f7fb;
   background: #0b0f17;
   font-synthesis: none;
@@ -36,7 +37,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -68,6 +70,7 @@ a {
 
 .app-shell {
   min-height: 100vh;
+  font-family: var(--font-family);
 }
 
 .desktop-navigation {
@@ -92,7 +95,7 @@ a {
   align-items: center;
   gap: 10px;
   padding: 0 10px 26px;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-family);
   font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.4px;
@@ -221,6 +224,45 @@ a {
   backdrop-filter: blur(18px);
 }
 
+.topbar-start {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.font-control {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 8px 0 10px;
+  color: var(--text-soft);
+  background: #121823;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.font-control select {
+  width: 66px;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  appearance: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.font-control option {
+  color: var(--text);
+  background: var(--panel-raised);
+}
+
 .search-box {
   display: flex;
   align-items: center;
@@ -333,7 +375,7 @@ main {
 h1,
 h2 {
   margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-family);
   letter-spacing: -0.035em;
 }
 
@@ -427,7 +469,7 @@ h2 {
 .metric-value {
   display: block;
   margin: 14px 0 4px;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-family);
   font-size: clamp(22px, 2vw, 27px);
   letter-spacing: -0.04em;
 }
@@ -661,7 +703,6 @@ tbody tr:hover {
 
   .mobile-menu {
     display: inline-flex;
-    margin-right: 10px;
   }
 
   .search-box {
@@ -721,6 +762,14 @@ tbody tr:hover {
 }
 
 @media (max-width: 560px) {
+  .topbar-start {
+    gap: 8px;
+  }
+
+  .search-box {
+    display: none;
+  }
+
   .page-heading {
     align-items: flex-start;
   }
