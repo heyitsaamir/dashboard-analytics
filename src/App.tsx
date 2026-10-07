@@ -1,18 +1,32 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
 import { ChannelChart } from './components/ChannelChart'
 import { Header } from './components/Header'
 import { MetricCard } from './components/MetricCard'
 import { RevenueChart } from './components/RevenueChart'
-import { Sidebar } from './components/Sidebar'
+import { Sidebar, type DashboardFont } from './components/Sidebar'
 import { metrics } from './data/demoData'
+
+const FONT_STORAGE_KEY = 'dashboard-font'
+
+function isDashboardFont(value: string | null): value is DashboardFont {
+  return value === 'sans' || value === 'serif' || value === 'mono'
+}
 
 function App() {
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const [font, setFont] = useState<DashboardFont>(() => {
+    const savedFont = window.localStorage.getItem(FONT_STORAGE_KEY)
+    return isDashboardFont(savedFont) ? savedFont : 'sans'
+  })
+
+  useEffect(() => {
+    window.localStorage.setItem(FONT_STORAGE_KEY, font)
+  }, [font])
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-font={font}>
       <div className={`mobile-navigation${navigationOpen ? ' open' : ''}`}>
         {navigationOpen && (
           <button
@@ -23,7 +37,7 @@ function App() {
             <X size={20} />
           </button>
         )}
-        <Sidebar />
+        <Sidebar selectedFont={font} onFontChange={setFont} />
       </div>
       {navigationOpen && (
         <button
@@ -33,7 +47,7 @@ function App() {
         />
       )}
       <div className="desktop-navigation">
-        <Sidebar />
+        <Sidebar selectedFont={font} onFontChange={setFont} />
       </div>
 
       <div className="workspace">
