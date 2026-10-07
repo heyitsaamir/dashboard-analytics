@@ -7,8 +7,23 @@ import {
   Package,
   Settings,
   Sparkles,
+  Type,
   Users,
 } from 'lucide-react'
+import { useId } from 'react'
+
+export type DashboardFont = 'sans' | 'serif' | 'mono'
+
+type SidebarProps = {
+  selectedFont: DashboardFont
+  onFontChange: (font: DashboardFont) => void
+}
+
+const fontOptions: Array<{ value: DashboardFont; label: string }> = [
+  { value: 'sans', label: 'Sans serif' },
+  { value: 'serif', label: 'Serif' },
+  { value: 'mono', label: 'Monospace' },
+]
 
 const primaryNavigation = [
   { label: 'Overview', icon: LayoutDashboard, active: true },
@@ -19,7 +34,9 @@ const primaryNavigation = [
   { label: 'Reports', icon: BarChart3 },
 ]
 
-export function Sidebar() {
+export function Sidebar({ selectedFont, onFontChange }: SidebarProps) {
+  const fontSelectId = useId()
+
   return (
     <aside className="sidebar">
       <div className="brand">
@@ -27,6 +44,24 @@ export function Sidebar() {
           <Sparkles size={18} />
         </span>
         <span>Northstar</span>
+      </div>
+
+      <div className="font-control">
+        <label htmlFor={fontSelectId}>
+          <Type size={15} aria-hidden="true" />
+          Dashboard font
+        </label>
+        <select
+          id={fontSelectId}
+          value={selectedFont}
+          onChange={(event) => onFontChange(event.target.value as DashboardFont)}
+        >
+          {fontOptions.map((option) => (
+            <option value={option.value} key={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <nav className="nav-list" aria-label="Primary navigation">
