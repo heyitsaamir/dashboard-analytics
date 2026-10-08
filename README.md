@@ -1,8 +1,8 @@
-# Northstar Analytics
+# 📊 Northstar Analytics
 
 A polished, responsive dark-mode analytics dashboard built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
 
-## Getting started
+## 🚀 Getting started
 
 Requires an active LTS release of Node.js (`20.19+`, `22.13+`, or `24+`).
 
@@ -13,7 +13,7 @@ npm run dev
 
 Open the local URL printed by Vite. The default development experience always uses the deterministic fixtures in `src/data/demoData.ts`; it makes no backend or external data API calls. Restarting or refreshing the app returns the same KPI, chart, and transaction data.
 
-## Commands
+## 🛠️ Commands
 
 | Command | Purpose |
 | --- | --- |
@@ -25,15 +25,15 @@ Open the local URL printed by Vite. The default development experience always us
 | `npm run build` | Type-check and create the production bundle |
 | `npm run preview` | Serve the production bundle locally |
 
-## Architecture
+## 🏗️ Architecture
 
-- **Vite + React + TypeScript** provide the application shell, strict typing, and fast local development.
-- **Recharts** renders responsive revenue and acquisition visualizations.
-- **Deterministic fixtures** in `src/data/demoData.ts` are the single local data source for KPIs, charts, and recent transactions.
-- **Component-focused UI** separates navigation, header, metric cards, charts, and the activity table under `src/components`.
-- **Vitest + Testing Library** cover critical rendering, navigation behavior, fixture stability, and data formatting.
+- ⚡ **Vite + React + TypeScript** provide the application shell, strict typing, and fast local development.
+- 📈 **Recharts** renders responsive revenue and acquisition visualizations.
+- 🎯 **Deterministic fixtures** in `src/data/demoData.ts` are the single local data source for KPIs, charts, and recent transactions.
+- 🧩 **Component-focused UI** separates navigation, header, metric cards, charts, and the activity table under `src/components`.
+- ✅ **Vitest + Testing Library** cover critical rendering, navigation behavior, fixture stability, and data formatting.
 
-## PWA behavior
+## 📱 PWA behavior
 
 `vite-plugin-pwa` generates the web app manifest and Workbox service worker. Production assets are precached for offline startup, outdated caches are cleaned automatically, and the service worker updates in the background. The app includes standalone display metadata, theme/background colors, Apple touch artwork, and standard plus maskable PNG/SVG icons.
 
