@@ -21,4 +21,35 @@ describe('App', () => {
     fireEvent.click(screen.getAllByRole('button', { name: /close navigation/i })[0])
     expect(screen.queryByRole('button', { name: /close navigation/i })).not.toBeInTheDocument()
   })
+
+  it('moves the decorative cat eyes toward the pointer', () => {
+    const { container } = render(<App />)
+    const cat = container.querySelector<HTMLElement>('.cursor-cat')
+
+    expect(cat).not.toBeNull()
+
+    cat!.getBoundingClientRect = () => ({
+      bottom: 180,
+      height: 80,
+      left: 100,
+      right: 180,
+      top: 100,
+      width: 80,
+      x: 100,
+      y: 100,
+      toJSON: () => ({}),
+    })
+
+    const pointerMove = new Event('pointermove')
+    Object.defineProperties(pointerMove, {
+      clientX: { value: 300 },
+      clientY: { value: 140 },
+    })
+    fireEvent(window, pointerMove)
+
+    expect(cat).toHaveStyle({
+      '--cat-look-x': '3.00px',
+      '--cat-look-y': '0.00px',
+    })
+  })
 })
