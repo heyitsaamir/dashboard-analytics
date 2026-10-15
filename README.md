@@ -1,47 +1,47 @@
 # Northstar Analytics
 
-A polished, responsive dark-mode analytics dashboard built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
+Un panel de análisis elegante y adaptable, con modo oscuro, desarrollado como una aplicación web progresiva (PWA) instalable. Northstar presenta indicadores de ingresos, clientes, conversión, adquisición y transacciones mediante un conjunto de datos local determinista, lo que permite realizar demostraciones rápidas y reproducibles sin necesidad de un backend.
 
-## Getting started
+## Primeros pasos
 
-Requires an active LTS release of Node.js (`20.19+`, `22.13+`, or `24+`).
+Se requiere una versión LTS activa de Node.js (`20.19+`, `22.13+` o `24+`).
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. The default development experience always uses the deterministic fixtures in `src/data/demoData.ts`; it makes no backend or external data API calls. Restarting or refreshing the app returns the same KPI, chart, and transaction data.
+Abre la URL local que muestra Vite. De forma predeterminada, el entorno de desarrollo siempre utiliza los datos de prueba deterministas de `src/data/demoData.ts`; no realiza llamadas a ningún backend ni a API de datos externas. Al reiniciar o recargar la aplicación, se obtienen los mismos indicadores clave de rendimiento (KPI) y los mismos datos de gráficos y transacciones.
 
-## Commands
+## Comandos
 
-| Command | Purpose |
+| Comando | Propósito |
 | --- | --- |
-| `npm run dev` | Start Vite with local demo data and PWA support |
-| `npm run test` | Run the focused Vitest suite once |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run lint` | Check TypeScript and React source with ESLint |
-| `npm run typecheck` | Run TypeScript project checks without emitting files |
-| `npm run build` | Type-check and create the production bundle |
-| `npm run preview` | Serve the production bundle locally |
+| `npm run dev` | Iniciar Vite con datos de demostración locales y compatibilidad con PWA |
+| `npm run test` | Ejecutar una vez la suite de pruebas específicas de Vitest |
+| `npm run test:watch` | Ejecutar las pruebas en modo de observación |
+| `npm run lint` | Revisar el código fuente de TypeScript y React con ESLint |
+| `npm run typecheck` | Ejecutar las comprobaciones de los proyectos de TypeScript sin generar archivos |
+| `npm run build` | Comprobar los tipos y generar el paquete de producción |
+| `npm run preview` | Servir el paquete de producción localmente |
 
-## Architecture
+## Arquitectura
 
-- **Vite + React + TypeScript** provide the application shell, strict typing, and fast local development.
-- **Recharts** renders responsive revenue and acquisition visualizations.
-- **Deterministic fixtures** in `src/data/demoData.ts` are the single local data source for KPIs, charts, and recent transactions.
-- **Component-focused UI** separates navigation, header, metric cards, charts, and the activity table under `src/components`.
-- **Vitest + Testing Library** cover critical rendering, navigation behavior, fixture stability, and data formatting.
+- **Vite + React + TypeScript** proporcionan la estructura base de la aplicación, tipado estricto y un desarrollo local ágil.
+- **Recharts** genera visualizaciones adaptables de ingresos y adquisición.
+- **Los datos de prueba deterministas** de `src/data/demoData.ts` son la única fuente de datos local para los KPI, los gráficos y las transacciones recientes.
+- **La interfaz de usuario basada en componentes** separa la navegación, la cabecera, las tarjetas de métricas, los gráficos y la tabla de actividad en `src/components`.
+- **Vitest + Testing Library** cubren los aspectos esenciales del renderizado, el comportamiento de la navegación, la estabilidad de los datos de prueba y el formato de los datos.
 
-## PWA behavior
+## Funcionamiento de la PWA
 
-`vite-plugin-pwa` generates the web app manifest and Workbox service worker. Production assets are precached for offline startup, outdated caches are cleaned automatically, and the service worker updates in the background. The app includes standalone display metadata, theme/background colors, Apple touch artwork, and standard plus maskable PNG/SVG icons.
+`vite-plugin-pwa` genera el manifiesto de la aplicación web y el service worker de Workbox. Los recursos de producción se almacenan previamente en caché para permitir el inicio sin conexión, las cachés obsoletas se eliminan automáticamente y el service worker se actualiza en segundo plano. La aplicación incluye metadatos para mostrarse en modo independiente, colores de tema y de fondo, un icono táctil de Apple e iconos PNG/SVG estándar y enmascarables.
 
-To verify installation and offline behavior locally:
+Para comprobar localmente la instalación y el funcionamiento sin conexión:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-Open the preview in a Chromium-based browser, use the browser's install action, and then test with the network disabled in DevTools. PWA support is also enabled during `npm run dev` for convenient development inspection.
+Abre la vista previa en un navegador basado en Chromium, utiliza la opción de instalación del navegador y luego prueba la aplicación con la red desactivada en las herramientas de desarrollo (DevTools). La compatibilidad con PWA también está habilitada al ejecutar `npm run dev` para facilitar la inspección durante el desarrollo.
