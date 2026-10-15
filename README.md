@@ -1,4 +1,4 @@
-# Northstar Analytics
+# northstar Analytics
 
 A polished, responsive dark-mode analytics dashboard built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
 
@@ -45,3 +45,7 @@ npm run preview
 ```
 
 Open the preview in a Chromium-based browser, use the browser's install action, and then test with the network disabled in DevTools. PWA support is also enabled during `npm run dev` for convenient development inspection.
+
+## App overview
+
+Northstar Analytics is a business analytics dashboard demo that brings financial performance, customer growth, acquisition trends, and transaction activity into a single dark-mode workspace. Summary cards highlight net revenue, active customers, conversion rate, and average order value, with supporting comparisons that make changes easy to scan. A revenue area chart compares performance against a target, while a horizontal acquisition chart breaks down sessions across organic, paid, direct, social, and referral channels; both charts provide tooltips for inspecting values. The recent transactions table adds customer and product details, invoice identifiers, payment statuses, amounts, and relative timestamps for a more granular view of business activity. Its responsive layout combines desktop sidebar navigation with a collapsible mobile menu, and its Progressive Web App support allows installation and offline startup after production assets have been cached. Built with React, TypeScript, Vite, and Recharts, the app uses deterministic local fixtures rather than live business integrations, making it a repeatable interface demo without a backend or external data API calls.
