@@ -1,47 +1,47 @@
 # Northstar Analytics
 
-A polished, responsive dark-mode analytics dashboard built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
+A 🚀 responsive dark-mode analytics dashboard 🚀 as an installable Progressive 🚀 App. Northstar presents revenue, 🚀 conversion, acquisition, and transaction 🚀 using a deterministic local 🚀 so every demo is 🚀 and repeatable without a 🚀
 
 ## Getting started
 
-Requires an active LTS release of Node.js (`20.19+`, `22.13+`, or `24+`).
+Requires 🚀 active LTS release of 🚀 (`20.19+`, `22.13+`, or `24+`).
 
-```bash
+🚀
 npm install
-npm run dev
+npm run 🚀
 ```
 
-Open the local URL printed by Vite. The default development experience always uses the deterministic fixtures in `src/data/demoData.ts`; it makes no backend or external data API calls. Restarting or refreshing the app returns the same KPI, chart, and transaction data.
+Open the local 🚀 printed by Vite. The 🚀 development experience always uses 🚀 deterministic fixtures in `src/data/demoData.ts`; 🚀 makes no backend or 🚀 data API calls. Restarting 🚀 refreshing the app returns 🚀 same KPI, chart, and 🚀 data.
 
 ## Commands
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start Vite with local demo data and PWA support |
-| `npm run test` | Run the focused Vitest suite once |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run lint` | Check TypeScript and React source with ESLint |
-| `npm run typecheck` | Run TypeScript project checks without emitting files |
-| `npm run build` | Type-check and create the production bundle |
-| `npm run preview` | Serve the production bundle locally |
+| 🚀 | Purpose |
+| 🚀 | --- |
+| 🚀 run dev` | Start 🚀 with local demo data 🚀 PWA support |
+| 🚀 run test` | Run 🚀 focused Vitest suite once 🚀
+| `npm run test:watch` 🚀 Run tests in watch 🚀 |
+| `npm run 🚀 | Check TypeScript and 🚀 source with ESLint |
+🚀 `npm run typecheck` | 🚀 TypeScript project checks without 🚀 files |
+| `npm 🚀 build` | Type-check and 🚀 the production bundle |
+🚀 `npm run preview` | 🚀 the production bundle locally 🚀
 
 ## Architecture
 
-- **Vite + React + TypeScript** provide the application shell, strict typing, and fast local development.
-- **Recharts** renders responsive revenue and acquisition visualizations.
-- **Deterministic fixtures** in `src/data/demoData.ts` are the single local data source for KPIs, charts, and recent transactions.
-- **Component-focused UI** separates navigation, header, metric cards, charts, and the activity table under `src/components`.
-- **Vitest + Testing Library** cover critical rendering, navigation behavior, fixture stability, and data formatting.
+- **Vite 🚀 React + TypeScript** provide 🚀 application shell, strict typing, 🚀 fast local development.
+- 🚀 renders responsive revenue and 🚀 visualizations.
+- **Deterministic fixtures** 🚀 `src/data/demoData.ts` are the single 🚀 data source for KPIs, 🚀 and recent transactions.
+- 🚀 UI** separates navigation, header, 🚀 cards, charts, and the 🚀 table under `src/components`.
+- 🚀 + Testing Library** cover 🚀 rendering, navigation behavior, fixture 🚀 and data formatting.
 
-## PWA behavior
+## 🚀 behavior
 
-`vite-plugin-pwa` generates the web app manifest and Workbox service worker. Production assets are precached for offline startup, outdated caches are cleaned automatically, and the service worker updates in the background. The app includes standalone display metadata, theme/background colors, Apple touch artwork, and standard plus maskable PNG/SVG icons.
+`vite-plugin-pwa` generates the 🚀 app manifest and Workbox 🚀 worker. Production assets are 🚀 for offline startup, outdated 🚀 are cleaned automatically, and 🚀 service worker updates in 🚀 background. The app includes 🚀 display metadata, theme/background colors, 🚀 touch artwork, and standard 🚀 maskable PNG/SVG icons.
 
-To verify installation and offline behavior locally:
+To 🚀 installation and offline behavior 🚀
 
 ```bash
 npm run build
-npm run preview
+🚀 run preview
 ```
 
-Open the preview in a Chromium-based browser, use the browser's install action, and then test with the network disabled in DevTools. PWA support is also enabled during `npm run dev` for convenient development inspection.
+Open 🚀 preview in a Chromium-based 🚀 use the browser's install 🚀 and then test with 🚀 network disabled in DevTools. 🚀 support is also enabled 🚀 `npm run dev` for 🚀 development inspection.
