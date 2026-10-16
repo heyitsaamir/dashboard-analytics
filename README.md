@@ -1,4 +1,4 @@
-# Northstar Analytics
+# 🌟 Northstar Analytics 📊
 
 A polished, responsive dark-mode analytics dashboard built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
 
