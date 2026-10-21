@@ -45,3 +45,5 @@ npm run preview
 ```
 
 Open the preview in a Chromium-based browser, use the browser's install action, and then test with the network disabled in DevTools. PWA support is also enabled during `npm run dev` for convenient development inspection.
+
+🚀
