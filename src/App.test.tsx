@@ -5,7 +5,9 @@ describe('App', () => {
   it('renders the business summary and deterministic transaction data', () => {
     render(<App />)
 
-    expect(screen.getByRole('heading', { name: /good evening, aamir/i })).toBeInTheDocument()
+    const heading = screen.getByRole('heading', { name: 'Good evening, Aamir' })
+    expect(heading).toHaveTextContent('Good evening, Aamir ✨')
+    expect(heading.querySelector('[aria-hidden="true"]')).toHaveTextContent('✨')
     expect(screen.getByText('$128,430')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /recent transactions/i })).toBeInTheDocument()
     expect(screen.getByText('Olivia Martin')).toBeInTheDocument()

@@ -42,7 +42,7 @@ function App() {
           <div className="page-heading">
             <div>
               <p className="eyebrow">Tuesday, September 22</p>
-              <h1>Good evening, Aamir</h1>
+              <h1>Good evening, Aamir <span aria-hidden="true">✨</span></h1>
               <p>Here’s what’s happening across your business today.</p>
             </div>
             <span className="live-indicator">
