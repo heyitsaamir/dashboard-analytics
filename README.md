@@ -15,7 +15,7 @@ Open the local URL printed by Vite. The default development experience always us
 
 ## Appearance
 
-Use the sun/moon button at the top right to switch between light and dark mode on desktop or mobile. Dark mode is the default; your choice is saved in local browser storage and restored on your next visit. If browser storage is unavailable, switching still works for the current visit.
+Use the sun/moon button fixed at the bottom right to switch between light and dark mode on desktop or mobile. Dark mode is the default; your choice is saved in local browser storage and restored on your next visit. If browser storage is unavailable, switching still works for the current visit.
 
 ## Commands
 

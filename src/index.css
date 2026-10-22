@@ -364,6 +364,13 @@ kbd {
   border-radius: 9px;
 }
 
+.theme-toggle {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 30;
+}
+
 .theme-toggle:hover {
   color: var(--accent);
   background: var(--panel-raised);
