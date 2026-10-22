@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X } from 'lucide-react'
+import { Moon, Sun, X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
 import { ChannelChart } from './components/ChannelChart'
 import { Header } from './components/Header'
@@ -39,11 +39,7 @@ function App() {
       </div>
 
       <div className="workspace">
-        <Header
-          onMenuClick={() => setNavigationOpen(true)}
-          theme={theme}
-          onThemeToggle={toggleTheme}
-        />
+        <Header onMenuClick={() => setNavigationOpen(true)} />
         <main>
           <div className="page-heading">
             <div>
@@ -71,6 +67,14 @@ function App() {
           <ActivityTable />
         </main>
       </div>
+      <button
+        className="icon-button theme-toggle"
+        onClick={toggleTheme}
+        aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      >
+        {theme === 'dark' ? <Sun size={19} aria-hidden="true" /> : <Moon size={19} aria-hidden="true" />}
+      </button>
     </div>
   )
 }

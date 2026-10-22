@@ -48,6 +48,14 @@ describe('App', () => {
     expect(document.querySelector('meta[name="theme-color"]')).toHaveAttribute('content', '#0b0f17')
   })
 
+  it('renders the theme toggle outside the top bar', () => {
+    render(<App />)
+
+    const toggle = screen.getByRole('button', { name: 'Switch to light mode' })
+    expect(toggle).toHaveClass('theme-toggle')
+    expect(screen.getByRole('banner')).not.toContainElement(toggle)
+  })
+
   it('toggles both themes and restores the saved choice on a new visit', async () => {
     const user = userEvent.setup()
     const { unmount } = render(<App />)
