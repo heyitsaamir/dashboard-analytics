@@ -1,10 +1,12 @@
-import { Bell, CalendarDays, ChevronDown, Menu, Search } from 'lucide-react'
+import { Bell, CalendarDays, ChevronDown, Menu, Moon, Search, Sun } from 'lucide-react'
 
 type HeaderProps = {
   onMenuClick: () => void
+  theme: 'dark' | 'light'
+  onThemeToggle: () => void
 }
 
-export function Header({ onMenuClick }: HeaderProps) {
+export function Header({ onMenuClick, theme, onThemeToggle }: HeaderProps) {
   return (
     <header className="topbar">
       <button
@@ -28,6 +30,14 @@ export function Header({ onMenuClick }: HeaderProps) {
           <CalendarDays size={17} />
           <span>Last 30 days</span>
           <ChevronDown size={15} />
+        </button>
+        <button
+          className="icon-button theme-toggle"
+          onClick={onThemeToggle}
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+          {theme === 'dark' ? <Sun size={19} aria-hidden="true" /> : <Moon size={19} aria-hidden="true" />}
         </button>
       </div>
     </header>
