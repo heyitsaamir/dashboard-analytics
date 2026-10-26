@@ -1,51 +1,51 @@
-# Northstar Analytics
+# Northstar Analytics, Arrr!
 
-A polished, responsive analytics dashboard with light and dark themes, built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
+Ahoy, matey! Northstar be a shipshape, responsive analytics dashboard with light and dark themes, built as an installable Progressive Web App. Chart yer revenue, customer, conversion, acquisition, and transaction waters with a deterministic local dataset, so every demo sails fast and repeatable without a backend aboard.
 
-## Getting started
+## Set sail
 
-Requires an active LTS release of Node.js (`20.19+`, `22.13+`, or `24+`).
+Before ye weigh anchor, bring an active LTS release of Node.js (`20.19+`, `22.13+`, or `24+`).
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. The default development experience always uses the deterministic fixtures in `src/data/demoData.ts`; it makes no backend or external data API calls. Restarting or refreshing the app returns the same KPI, chart, and transaction data.
+Steer yer browser to the local URL printed by Vite. The default development voyage always uses the deterministic fixtures in `src/data/demoData.ts`; no backend or external data API calls leave this ship. Restart or refresh the app, and ye'll find the same KPI, chart, and transaction treasure waiting.
 
-## Appearance
+## Hoist yer colors
 
-Use the sun/moon button at the top right to switch between light and dark mode on desktop or mobile. Dark mode is the default; your choice is saved in local browser storage and restored on your next visit. If browser storage is unavailable, switching still works for the current visit.
+Tap the sun/moon button at the top right to sail between light and dark mode on desktop or mobile. Dark mode be the default; yer choice is stowed in local browser storage and restored when ye return to port. If browser storage be unavailable, ye can still switch colors for the current visit.
 
-## Commands
+## Captain's orders
 
-| Command | Purpose |
+| Command | Orders |
 | --- | --- |
-| `npm run dev` | Start Vite with local demo data and PWA support |
-| `npm run test` | Run the focused Vitest suite once |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run lint` | Check TypeScript and React source with ESLint |
-| `npm run typecheck` | Run TypeScript project checks without emitting files |
-| `npm run build` | Type-check and create the production bundle |
-| `npm run preview` | Serve the production bundle locally |
+| `npm run dev` | Weigh anchor with Vite, local demo data, and PWA support |
+| `npm run test` | Muster the focused Vitest crew for one test run |
+| `npm run test:watch` | Keep a lookout with tests in watch mode |
+| `npm run lint` | Inspect the TypeScript and React rigging with ESLint |
+| `npm run typecheck` | Check the TypeScript charts without emitting files |
+| `npm run build` | Type-check the ship and pack the production bundle |
+| `npm run preview` | Serve the production bundle in yer local harbor |
 
-## Architecture
+## The ship's rigging
 
-- **Vite + React + TypeScript** provide the application shell, strict typing, and fast local development.
-- **Recharts** renders responsive revenue and acquisition visualizations.
-- **Deterministic fixtures** in `src/data/demoData.ts` are the single local data source for KPIs, charts, and recent transactions.
-- **Component-focused UI** separates navigation, header, metric cards, charts, and the activity table under `src/components`.
-- **Vitest + Testing Library** cover critical rendering, navigation behavior, fixture stability, and data formatting.
+- **Vite + React + TypeScript** keep the application shell shipshape with strict typing and swift local development.
+- **Recharts** maps yer revenue and acquisition waters with responsive visualizations.
+- **Deterministic fixtures** in `src/data/demoData.ts` be the single local treasure chest for KPIs, charts, and recent transactions.
+- **Component-focused UI** gives navigation, header, metric cards, charts, and the activity table their own berths under `src/components`.
+- **Vitest + Testing Library** stand watch over critical rendering, navigation behavior, fixture stability, and data formatting.
 
-## PWA behavior
+## Sail offline with the PWA
 
-`vite-plugin-pwa` generates the web app manifest and Workbox service worker. Production assets are precached for offline startup, outdated caches are cleaned automatically, and the service worker updates in the background. The app includes standalone display metadata, theme/background colors, Apple touch artwork, and standard plus maskable PNG/SVG icons.
+`vite-plugin-pwa` crafts the web app manifest and Workbox service worker. Production assets be precached so ye can launch offline, outdated caches are cleared automatically, and the service worker updates below deck in the background. The app carries standalone display metadata, theme/background colors, Apple touch artwork, and standard plus maskable PNG/SVG icons.
 
-To verify installation and offline behavior locally:
+To put local installation and offline sailing through their sea trials:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-Open the preview in a Chromium-based browser, use the browser's install action, and then test with the network disabled in DevTools. PWA support is also enabled during `npm run dev` for convenient development inspection.
+Open the preview in a Chromium-based browser, use the browser's install action, then disable the network in DevTools to test yer offline sea legs. PWA support be enabled during `npm run dev` too, so ye can inspect the ship while she's under construction.
