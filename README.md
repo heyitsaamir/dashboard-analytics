@@ -1,3 +1,5 @@
+🦊
+
 # Northstar Analytics
 
 A polished, responsive analytics dashboard with light and dark themes, built as an installable Progressive Web App. Northstar presents revenue, customer, conversion, acquisition, and transaction signals using a deterministic local dataset, so every demo is fast and repeatable without a backend.
@@ -49,3 +51,5 @@ npm run preview
 ```
 
 Open the preview in a Chromium-based browser, use the browser's install action, and then test with the network disabled in DevTools. PWA support is also enabled during `npm run dev` for convenient development inspection.
+
+🐼
