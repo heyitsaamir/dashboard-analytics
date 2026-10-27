@@ -2,6 +2,12 @@
 
 Ahoy, matey! Northstar be a shipshape, responsive analytics dashboard with light and dark themes, built as an installable Progressive Web App. Chart yer revenue, customer, conversion, acquisition, and transaction waters with a deterministic local dataset, so every demo sails fast and repeatable without a backend aboard.
 
+```text
+ /\_/\
+( o.o )
+ > ^ <
+```
+
 ## Set sail
 
 Before ye weigh anchor, bring an active LTS release of Node.js (`20.19+`, `22.13+`, or `24+`).
