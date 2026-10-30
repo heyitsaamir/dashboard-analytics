@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { X } from 'lucide-react'
 import { ActivityTable } from './components/ActivityTable'
 import { ChannelChart } from './components/ChannelChart'
+import { Confetti } from './components/Confetti'
 import { Header } from './components/Header'
 import { MetricCard } from './components/MetricCard'
 import { RevenueChart } from './components/RevenueChart'
@@ -45,6 +46,7 @@ function App() {
           onThemeToggle={toggleTheme}
         />
         <main>
+          <Confetti />
           <div className="page-heading">
             <div>
               <p className="eyebrow">Tuesday, September 22</p>
